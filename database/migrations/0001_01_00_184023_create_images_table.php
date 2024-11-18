@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->string('url',);
-            $table->foreignId('space_user_id')->constrained('space_user');
-
+            $table->string('url',100);
+            $table->foreignId('comment_id')->constrained();
             $table->timestamps();
         });
     }

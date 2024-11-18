@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Role;
 use App\Models\Space;
+use App\Models\Comment;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -14,12 +15,17 @@ class User extends Authenticatable
 
     public function spaces()
     {
-        return $this->belongsToMany(Space::class)->withPivot('comment','score','status');
+        return $this->hasMany(Space::class);
     }
 
     public function role()
     {
         return $this->belongsTo(Role::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 
     /** @use HasFactory<\Database\Factories\UserFactory> */

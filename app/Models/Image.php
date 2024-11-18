@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use App\Models\SpaceUser;
+use App\Models\Comment;
 use Illuminate\Database\Eloquent\Model;
 
 class Image extends Model
 {
-    public function spaceUser()
+    public function comment()
     {
-        return $this->belongsTo(SpaceUser::class);
+        return $this->belongsTo(Comment::class);
     }
 }

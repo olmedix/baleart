@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\User;
 use App\Models\Address;
+use App\Models\Comment;
 use App\Models\Service;
 use App\Models\Modality;
 use App\Models\SpaceType;
@@ -31,8 +32,13 @@ class Space extends Model
         return $this->belongsToMany(Service::class);
     }
 
-    public function users()
+    public function user()
     {
-        return $this->belongsToMany(User::class)->withPivot('comment','score','status');
+        return $this->belongsTo(User::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

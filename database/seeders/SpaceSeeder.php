@@ -20,7 +20,7 @@ class SpaceSeeder extends Seeder
         $spaces = json_decode($jsonData, true);
 
         // Generar un valor aleatorio para access_types
-        $accessTypes = ['y', 'n', 'p'];
+        $accessTypes = ['y', 'n', 'p'];hoy
         $randomAccessType = $accessTypes[array_rand($accessTypes)];
 
         foreach ($spaces as $space) {
@@ -34,8 +34,8 @@ class SpaceSeeder extends Seeder
                 'phone' => $space['telefon'],
                 'website' => $space['web'],
                 'access_types' => $randomAccessType,
-                //'total_scores' => 0,
-                //'count_scores' => 0,
+                'total_scores' => 0,
+                'count_scores' => 0,
                 'address_id' => Address::where('name',$space['adreca'] )->first()->id,
                 'space_types_id' => SpaceType::where('name', $space['tipus'])->first()->id,
                 //'user_id' => User::where('name', $space['usuari'])->first()->id,

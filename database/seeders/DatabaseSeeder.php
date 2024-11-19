@@ -13,6 +13,27 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call(RoleSeeder::class);
+        $this->call(IslandSeeder::class);
+        $this->call(SpaceTypeSeeder::class);
+        $this->call(ModalitySeeder::class);
+        $this->call(ServiceSeeder::class);
+        $this->call(MunicipalitySeeder::class);
+        $this->call(ZoneSeeder::class);
+        $this->call(AddressSeeder::class);
+        $this->call(UserSeeder::class);
+        User::factory(10)->create();
+        $this->call(SpaceSeeder::class);
+        
+        
+        
+        
+
+
+
+
+
+
         // User::factory(10)->create();
 
         User::factory()->create([

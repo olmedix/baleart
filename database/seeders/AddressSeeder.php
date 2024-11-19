@@ -2,8 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Zone;
+use App\Models\Address;
+use App\Models\Municipality;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class AddressSeeder extends Seeder
 {
@@ -12,9 +15,15 @@ class AddressSeeder extends Seeder
      */
     public function run(): void
     {
-        $jsonData = file_get_contents('c:\\temp\\baleart\\.json');
-        $modalities = json_decode($jsonData, true);
+        $jsonData = file_get_contents('c:\\temp\\baleart\\espais.json');
+        $adresses = json_decode($jsonData, true);
 
-        //TODO: Implement the seeder
+        foreach($adresses['usuaris']['usuari'] as $address) {
+            Address::create([
+                'name' => $address['adreca'],
+                'zoneid' => Zone::where('name', $address['zona'])->first()->id,
+                'municipality_id' => Municipality::where('name', $address['municipi'])->first()->id
+            ]);
+        }
     }
 }

@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ZoneSeeder::class);
         $this->call(AddressSeeder::class);
         $this->call(UserSeeder::class);
-        User::factory(10)->create();
+        User::factory(50)->create();
         $this->call(SpaceSeeder::class);
         
         

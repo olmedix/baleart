@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Zone;
 use App\Models\Space;
 use App\Models\Address;
+use App\Models\Service;
+use App\Models\Modality;
 use App\Models\SpaceType;
 use App\Models\Municipality;
 use Illuminate\Database\Seeder;
@@ -26,31 +28,42 @@ class SpaceSeeder extends Seeder
         $accessTypes = ['y', 'n', 'p'];
         $randomAccessType = $accessTypes[array_rand($accessTypes)];
 
-        foreach($data as $address) {
-            $newAddress = Address::create([/
-                'name' => $address['adreca'],
-                'zone_id' => Zone::where('name',$address['zona'])->first()->id,
-                'municipality_id' => Municipality::where('name', $address['municipi'])->first()->id,
+        foreach($data as $service) {
+            $newAddress = Address::create([
+                'name' => $service['adreca'],
+                'zone_id' => Zone::where('name',$service['zona'])->first()->id,
+                'municipality_id' => Municipality::where('name', $service['municipi'])->first()->id,
             ]);
       
             $newSpace = Space::create([
-               'name' => $address['nom'],
-               'regNumber' => $address['registre'],
-                'observation_CA' => $address['descripcions/cat'],
-                'observation_ES' => $address['descripcions/esp'],
-                'observation_EN' => $address['descripcions/eng'],
-                'email' => $address['email'],
-                'phone' => $address['telefon'],
-                'website' => $address['web'],
+               'name' => $service['nom'],
+               'regNumber' => $service['registre'],
+                'observation_CA' => $service['descripcions/cat'],
+                'observation_ES' => $service['descripcions/esp'],
+                'observation_EN' => $service['descripcions/eng'],
+                'email' => $service['email'],
+                'phone' => $service['telefon'],
+                'website' => $service['web'],
                 'access_types' => $randomAccessType,
                 'totalScore' => 0,
                 'countScore' => 0,
-                'address_id' => $newAddress->id;
-                'space_types_id' => SpaceType::where('name', $address['tipus'])->first()->id,
-                'user_id' => User::where('email', $address['gestor'])->first()->id ??
+                'address_id' => $newAddress->id,
+                'space_types_id' => SpaceType::where('name', $service['tipus'])->first()->id,
+                'user_id' => User::where('email', $service['gestor'])->first()->id ??
                              Role::where('name', 'administrador')->value('id'),
 
             ]);
+
+            
+            $modalitiesArray =array_map('trim', explode(',', $service['modalitats']));
+            $modalities = Modality::whereIn('name', $modalitiesArray)->get();
+            $newSpace->modalities()->attach($modalities);
+
+            $serviceArray =array_map('trim', explode(',', $service['serveis']));
+            $servei = Service::whereIn('name', $serviceArray)->get();
+            $newSpace->services()->attach($servei);
+
+            
 
         }
     }

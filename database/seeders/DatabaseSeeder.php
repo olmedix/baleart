@@ -26,8 +26,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SpaceSeeder::class);
         $this->call(CommentSeeder::class);
         Image::factory(50)->create();
-        $this->call(ServiceSpaceSeeder::class);
-        $this->call(ModalitySpaceSeeder::class);
     
     }
 }

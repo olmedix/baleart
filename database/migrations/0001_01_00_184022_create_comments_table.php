@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('comment',500);
             $table->enum('score', [0, 1, 2, 3, 4, 5]);
-            $table->enum('status',['y','n']);
+            $table->enum('status',['y','n'])->default('n');
             $table->foreignId('space_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();

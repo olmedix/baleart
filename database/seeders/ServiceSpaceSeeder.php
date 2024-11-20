@@ -6,7 +6,7 @@ use App\Models\Space;
 use App\Models\Service;
 use Illuminate\Database\Seeder;
 
-class ModalitySpaceSeeder extends Seeder
+class ServiceSpaceSeeder extends Seeder
 {
     /**
      * Run the database seeds.

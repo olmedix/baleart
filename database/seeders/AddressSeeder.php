@@ -18,11 +18,11 @@ class AddressSeeder extends Seeder
         $jsonData = file_get_contents('c:\\temp\\baleart\\espais.json');
         $adresses = json_decode($jsonData, true);
 
-        foreach($adresses['usuaris']['usuari'] as $address) {
+        foreach($adresses as $address) {
             Address::create([
                 'name' => $address['adreca'],
-                'zoneid' => Zone::where('name', $address['zona'])->first()->id,
-                'municipality_id' => Municipality::where('name', $address['municipi'])->first()->id
+                'zone_id' => Zone::where('name',$address['zona'])->first()->id,
+                'municipality_id' => Municipality::where('name', $address['municipi'])->first()->id,
             ]);
         }
     }

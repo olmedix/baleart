@@ -17,7 +17,7 @@ class IslandSeeder extends Seeder
         $islands = [
             ['name' => 'Mallorca'],
             ['name' => 'Menorca'],
-            ['name' => 'Ibiza'],
+            ['name' => 'Eivissa'],
             ['name' => 'Formentera'],
         ];
 

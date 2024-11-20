@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
 use App\Models\User;
 use App\Models\Space;
 use App\Models\Address;
@@ -16,17 +17,17 @@ class SpaceSeeder extends Seeder
      */
     public function run(): void
     {
-        $jsonData = file_get_contents(database_path('c:\\temp\\baleart\\espais.json'));
+        $jsonData = file_get_contents('c:\\temp\\baleart\\espais.json');
         $spaces = json_decode($jsonData, true);
 
         // Generar un valor aleatorio para access_types
-        $accessTypes = ['y', 'n', 'p'];hoy
+        $accessTypes = ['y', 'n', 'p'];
         $randomAccessType = $accessTypes[array_rand($accessTypes)];
 
         foreach ($spaces as $space) {
             Space::create([
-               'name' => $space['name'],
-               'registre' => $space['regNumber'],
+               'name' => $space['nom'],
+               'regNumber' => $space['registre'],
                 'observation_CA' => $space['descripcions/cat'],
                 'observation_ES' => $space['descripcions/esp'],
                 'observation_EN' => $space['descripcions/eng'],
@@ -34,11 +35,12 @@ class SpaceSeeder extends Seeder
                 'phone' => $space['telefon'],
                 'website' => $space['web'],
                 'access_types' => $randomAccessType,
-                'total_scores' => 0,
-                'count_scores' => 0,
+                'totalScore' => 0,
+                'countScore' => 0,
                 'address_id' => Address::where('name',$space['adreca'] )->first()->id,
                 'space_types_id' => SpaceType::where('name', $space['tipus'])->first()->id,
-                //'user_id' => User::where('name', $space['usuari'])->first()->id,
+                'user_id' => User::where('email', $space['gestor'])->first()->id ??
+                             Role::where('name', 'administrador')->value('id'),
 
             ]);
         }

@@ -32,7 +32,7 @@ class UserFactory extends Factory
             'phone' => fake()->phoneNumber(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
-            'role_id' => Role::where('name', 'visitant')->value('id'), VERIFICAR CON EL PROFESOR
+            'role_id' => Role::where('name', 'visitant')->value('id'),
 
         ];
     }

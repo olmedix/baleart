@@ -16,9 +16,8 @@ class ServiceSeeder extends Seeder
         $jsonDatabase = file_get_contents('c:\\temp\\baleart\\serveis.json');
         $services = json_decode($jsonDatabase, true);
 
-        foreach ($services as $service) {
+        foreach ($services['serveis']['servei'] as $service) {
             Service::create([
-                'id' => $service['id'],
                 'name' => $service['cat'],
                 'description_CA' => $service['cat'],
                 'description_ES' => $service['esp'],

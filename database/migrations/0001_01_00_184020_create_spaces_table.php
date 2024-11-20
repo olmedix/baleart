@@ -22,8 +22,8 @@ return new class extends Migration
             $table->string('phone',100);
             $table->string('website',100);
             $table->enum('access_types',['y','n','p']);
-            $table->float('total_scores');
-            $table->float('count_scores');
+            $table->float('totalScore')->default(0);
+            $table->float('countScore')->default(0);
             $table->foreignId('address_id')->constrained();
             $table->foreignId('space_types_id')->constrained();
             $table->foreignId('user_id')->constrained();

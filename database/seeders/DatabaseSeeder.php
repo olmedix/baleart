@@ -21,7 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ServiceSeeder::class);
         $this->call(MunicipalitySeeder::class);
         $this->call(ZoneSeeder::class);
-        $this->call(AddressSeeder::class);
         $this->call(UserSeeder::class);
         User::factory(50)->create();
         $this->call(SpaceSeeder::class);

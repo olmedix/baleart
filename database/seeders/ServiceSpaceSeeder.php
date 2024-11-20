@@ -13,7 +13,13 @@ class ServiceSpaceSeeder extends Seeder
      */
     public function run(): void
     {
-        
+        /*
+        $space =Space::where('name', 'Space 1')->first();
+        $user = User::where('email', '...')->first();
+
+        $post->user()->attach($user->id);
+        */
+
         $services = Service::all();
         $spaces = Space::all();
         

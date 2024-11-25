@@ -18,6 +18,7 @@ class ServiceSeeder extends Seeder
 
         foreach ($services['serveis']['servei'] as $service) {
             Service::create([
+                'id' => $service['id'],
                 'name' => $service['cat'],
                 'description_CA' => $service['cat'],
                 'description_ES' => $service['esp'],

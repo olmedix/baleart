@@ -18,6 +18,7 @@ class ModalitySeeder extends Seeder
 
         foreach ($modalities['modalitats']['modalitat'] as $modality) {
             Modality::create([
+                'id' => $modality['id'],
                 'name' => $modality['cat'],
                 'description_CA' => $modality['cat'],
                 'description_ES' => $modality['esp'],

@@ -18,6 +18,7 @@ class SpaceTypeSeeder extends Seeder
 
         foreach ($spaceTypes['tipusespais']['tipus'] as $spaceType) {
             SpaceType::create([
+               'id' => $spaceType['id'],
                'name' => $spaceType['cat'],
                'description_CA' => $spaceType['cat'],
                'description_ES' => $spaceType['esp'],

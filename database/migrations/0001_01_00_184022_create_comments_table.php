@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->string('comment',500);
-            $table->enum('score', [0, 1, 2, 3, 4, 5]);
+            $table->float('score');
             $table->enum('status',['y','n'])->default('n');
             $table->foreignId('space_id')->constrained();
             $table->foreignId('user_id')->constrained();

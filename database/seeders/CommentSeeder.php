@@ -23,8 +23,8 @@ class CommentSeeder extends Seeder
                 'comment' => $comment['text'],
                 'score' => $comment['puntuacio'],
                 'status' => 'y',
-                'space_id' => Space::where('regNumber', $comment['espai'])->first()->id ?? null,
-                'user_id' => User::where('email', $comment['usuari'])->first()->id ?? null,
+                'space_id' => Space::where('regNumber', $comment['espai'])->first()->id,
+                'user_id' => User::where('email', $comment['usuari'])->first()->id,
                 'created_at' => Carbon::createFromFormat('d-m-Y H:i:s', $comment['data'] . ' ' . $comment['hora']),
                 'updated_at' => now(),
             ]);

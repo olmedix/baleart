@@ -19,8 +19,8 @@ class Address extends Model
         return $this->belongsTo(Zone::class);
     }
 
-    public function spaces()
+    public function space()
     {
-        return $this->hasMany(Space::class);
+        return $this->hasOne(Space::class);
     }
 }

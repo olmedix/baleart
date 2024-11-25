@@ -23,12 +23,20 @@ class SpaceSeeder extends Seeder
     {
         $jsonData = file_get_contents('c:\\temp\\baleart\\espais.json');
         $data = json_decode($jsonData, true);
-
-        // Generar un valor aleatorio para access_types
-        $accessTypes = ['y', 'n', 'p'];
-        $randomAccessType = $accessTypes[array_rand($accessTypes)];
+        
 
         foreach($data as $service) {
+
+            $accessTypes="";
+
+            if($service['accessibilitat'] ==="Sí"){
+                $accessTypes= "y";
+            }else if($service['accessibilitat'] ==="No"){
+                 $accessTypes= "n";
+            }else{
+                 $accessTypes= "p";
+            } 
+
             $newAddress = Address::create([
                 'name' => $service['adreca'],
                 'zone_id' => Zone::where('name',$service['zona'])->first()->id,
@@ -44,7 +52,7 @@ class SpaceSeeder extends Seeder
                 'email' => $service['email'],
                 'phone' => $service['telefon'],
                 'website' => $service['web'],
-                'access_types' => $randomAccessType,
+                'access_types' => $accessTypes,
                 'totalScore' => 0,
                 'countScore' => 0,
                 'address_id' => $newAddress->id,

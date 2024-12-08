@@ -15,7 +15,7 @@ class IslandSeeder extends Seeder
     {
         
         $islands = [
-            ['name' => 'Mallorca'],
+            ['name' => 'Mallorca'],  // CORRECCIÓ: per què fas un array associatiu si no ho necessites? ... ni l'empres
             ['name' => 'Menorca'],
             ['name' => 'Eivissa'],
             ['name' => 'Formentera'],

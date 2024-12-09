@@ -14,12 +14,7 @@ class IslandSeeder extends Seeder
     public function run(): void
     {
         
-        $islands = [
-            ['name' => 'Mallorca'],
-            ['name' => 'Menorca'],
-            ['name' => 'Eivissa'],
-            ['name' => 'Formentera'],
-        ];
+        $islands =['Mallorca','Menorca','Eivissa','Formentera'];
 
         foreach ($islands as $island) {
             Island::create($island);

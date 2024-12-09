@@ -16,7 +16,7 @@ class IslandSeeder extends Seeder
         
         $islands = [
             'Mallorca',
-            'Menorca',
+            'Menorca' ,
             'Eivissa',
             'Formentera',
             'Cabrera'

@@ -63,16 +63,19 @@ class SpaceSeeder extends Seeder
             ]);
 
             
-            $modalitiesArray =array_map('trim', explode(',', $service['modalitats']));
+            $modalitiesArray = array_map('trim', explode(',', $service['modalitats']));
             $modalities = Modality::whereIn('name', $modalitiesArray)->get();
-            $newSpace->modalities()->attach($modalities);
+            $newSpace->modalities()->attach(
+                $modalities->pluck('id'), // Extraemos los IDs de las modalidades
+                ['created_at' => now(), 'updated_at' => now()] // Timestamps
+            );
 
-            $serviceArray =array_map('trim', explode(',', $service['serveis']));
+            $serviceArray = array_map('trim', explode(',', $service['serveis']));
             $servei = Service::whereIn('name', $serviceArray)->get();
-            $newSpace->services()->attach($servei);
-
-            
-
+            $newSpace->services()->attach(
+                $servei->pluck('id'), // Extraemos los IDs de los servicios
+                ['created_at' => now(), 'updated_at' => now()] // Timestamps
+            );
         }
     }
 }

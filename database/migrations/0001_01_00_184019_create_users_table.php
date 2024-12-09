@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('password',100);
             $table->rememberToken();
             $table->timestamps();
-            $table->foreignId('role_id')->constrained();
+            $table->foreignId('role_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

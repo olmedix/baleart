@@ -13,5 +13,3 @@ Route::get('/user', function (Request $request) {
 Route::apiresource('users', UserController::class);
 Route::apiresource('spaces', SpaceController::class);
 
-//PARA SHOW
-Route::get('spaces/search/{value}', [SpaceController::class, 'search']);

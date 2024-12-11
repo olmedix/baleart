@@ -9,6 +9,6 @@ class SpaceType extends Model
 {
     public function spaces()
     {
-        return $this->hasMany(Space::class);
+        return $this->hasMany(Space::class, 'space_types_id', 'id');
     }
 }

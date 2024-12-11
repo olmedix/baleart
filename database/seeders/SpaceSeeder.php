@@ -12,7 +12,6 @@ use App\Models\Modality;
 use App\Models\SpaceType;
 use App\Models\Municipality;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class SpaceSeeder extends Seeder
 {
@@ -23,29 +22,29 @@ class SpaceSeeder extends Seeder
     {
         $jsonData = file_get_contents('c:\\temp\\baleart\\espais.json');
         $data = json_decode($jsonData, true);
-        
 
-        foreach($data as $service) {
 
-            $accessTypes="";
+        foreach ($data as $service) {
 
-            if($service['accessibilitat'] ==="Sí"){
-                $accessTypes= "y";
-            }else if($service['accessibilitat'] ==="No"){
-                 $accessTypes= "n";
-            }else{
-                 $accessTypes= "p";
-            } 
+            $accessTypes = "";
+
+            if ($service['accessibilitat'] === "Sí") {
+                $accessTypes = "y";
+            } else if ($service['accessibilitat'] === "No") {
+                $accessTypes = "n";
+            } else {
+                $accessTypes = "p";
+            }
 
             $newAddress = Address::create([
                 'name' => $service['adreca'],
-                'zone_id' => Zone::where('name',$service['zona'])->first()->id,
+                'zone_id' => Zone::where('name', $service['zona'])->first()->id,
                 'municipality_id' => Municipality::where('name', $service['municipi'])->first()->id,
             ]);
-      
+
             $newSpace = Space::create([
-               'name' => $service['nom'],
-               'regNumber' => $service['registre'],
+                'name' => $service['nom'],
+                'regNumber' => $service['registre'],
                 'observation_CA' => $service['descripcions/cat'],
                 'observation_ES' => $service['descripcions/esp'],
                 'observation_EN' => $service['descripcions/eng'],
@@ -56,13 +55,13 @@ class SpaceSeeder extends Seeder
                 'totalScore' => 0,
                 'countScore' => 0,
                 'address_id' => $newAddress->id,
-                'space_types_id' => SpaceType::where('name', $service['tipus'])->first()->id,
+                'space_type_id' => SpaceType::where('name', $service['tipus'])->first()->id,
                 'user_id' => User::where('email', $service['gestor'])->first()->id ??
-                             Role::where('name', 'administrador')->value('id'),
+                    Role::where('name', 'administrador')->value('id'),
 
             ]);
 
-            
+
             $modalitiesArray = array_map('trim', explode(',', $service['modalitats']));
             $modalities = Modality::whereIn('name', $modalitiesArray)->get();
             $newSpace->modalities()->attach(

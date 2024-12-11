@@ -28,8 +28,8 @@ class SpaceController extends Controller
         $spaces = $query->paginate(15);
 
         // Devolver respuesta formateada con metadatos
-        return response()->json($spaces);
-        //return SpaceResource::collection($spaces)->additional(['meta' => 'Espacio encontrado correctamente']);
+        //return response()->json($spaces);
+        return SpaceResource::collection($spaces)->additional(['meta' => 'Espacio encontrado correctamente']);
     }
 
 
@@ -46,8 +46,6 @@ class SpaceController extends Controller
             "comments.images",
             "user"
         ])->get();
-
-        //$query = Space::with("spaceType")->get();
 
         $space = is_numeric($value)
             ? $query->findOrFail($value)  // Busca por 'id'

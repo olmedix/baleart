@@ -9,7 +9,12 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-
+//SPACES
 Route::apiresource('users', UserController::class);
+Route::post('/spaces/{regNumber}', [SpaceController::class, 'store']);
+
+//USERS
 Route::apiresource('spaces', SpaceController::class);
+
+
 

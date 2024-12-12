@@ -54,25 +54,18 @@ class SpaceController extends Controller
         //return response()->json($space);
     }
 
-
-    /*EJEMPLO DE PETICIÓN STORE
-    {
-        "comment": "This is a test comment.",
-        "score": 4.5,
-        "images": ["image1.jpg", "image2.png"]
-    }
-    */
     public function store(GuardarSpaceRequest $request, $regNumber)
     {
         // Buscar el espacio por regNumber
         $space = Space::where('regNumber', $regNumber)->firstOrFail();
 
-        // Crear el comentario asociado al space
+        // Crear el comentario asociado al space,no es necesario añadir el space_id ya que se hace automáticamente.
         $comment = $space->comments()->create([
             'comment' => $request->input('comment'),
             'score' => $request->input('score'),
+            'status' => 'n',
             'user_id' => auth()->id(), // Usar el ID del usuario autenticado
-            'status' => 'n' // Por defecto
+            //'user_id' => 1 // USO DE PRUEBA,ELIMINAR !!!!!
         ]);
 
         // Agregar imágenes asociadas al comentario (si existen)
@@ -82,10 +75,12 @@ class SpaceController extends Controller
         }
 
         return response()->json([
-            $comment,
-            'message' => 'Comentario creado correctamente',
+            'comentario' => $comment,
+            'mensaje' => 'Comentario creado correctamente',
         ]);
     }
+
+
 
     public function update(Request $request, $id)
     {

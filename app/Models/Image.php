@@ -8,11 +8,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Image extends Model
 {
+
+    use HasFactory;
+
+    protected $fillable = ['url'];
+
     public function comment()
     {
         return $this->belongsTo(Comment::class);
     }
-
-    use HasFactory;
 
 }

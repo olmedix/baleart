@@ -6,12 +6,15 @@ namespace App\Models;
 use App\Models\Role;
 use App\Models\Space;
 use App\Models\Comment;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
+    use HasFactory, Notifiable, HasApiTokens;
+
 
     public function spaces()
     {
@@ -28,19 +31,12 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $fillable = ['name', 'lastName', 'email', 'phone', 'password', 'role_id'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -57,6 +53,7 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
+    /*
     protected function casts(): array
     {
         return [
@@ -64,4 +61,7 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    */
+
+    protected $casts = ['email_verified_at' => 'datetime', 'password' => 'hashed',];
 }

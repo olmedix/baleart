@@ -27,6 +27,7 @@ class SpaceController extends Controller
         $spaces = $query->paginate(15);
 
         // Devolver respuesta formateada con metadatos
+
         //return response()->json($spaces);
         return SpaceResource::collection($spaces)->additional(['meta' => 'Espacio encontrado correctamente']);
     }

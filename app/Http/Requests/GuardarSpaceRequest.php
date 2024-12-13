@@ -25,9 +25,13 @@ class GuardarSpaceRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'comment' => 'El comentario no puede estar vacío o exceder los 500 caracteres.',
-            'score' => 'La puntuación debe ser un número entre 0 y 5.',
-            'images.*' => 'La url de la imagen no debe exceder los 100 caracteres.',
+            'comment.required' => 'El comentario no puede estar vacío o exceder los 500 caracteres.',
+            'comment.max' => 'El comentario no puede exceder los 500 caracteres.',
+            'score.required' => 'La puntuación no puede estar vacía.',
+            'score.numeric' => 'La puntuación debe ser un número.',
+            'score.max' => 'La puntuación no puede ser mayor a 5.',
+            'score.min' => 'La puntuación no puede ser menor a 0.',
+            'images.*.max' => 'La url de la imagen no debe exceder los 100 caracteres.',
         ];
     }
 }

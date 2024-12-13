@@ -65,8 +65,8 @@ class SpaceController extends Controller
             'comment' => $request->input('comment'),
             'score' => $request->input('score'),
             'status' => 'n',
-            'user_id' => auth()->id(), // Usar el ID del usuario autenticado
-            //'user_id' => 1 // USO DE PRUEBA,ELIMINAR !!!!!
+            //'user_id' => auth()->id(), // Usar el ID del usuario autenticado
+            'user_id' => 1 // USO DE PRUEBA,ELIMINAR !!!!!
         ]);
 
         // Agregar imágenes asociadas al comentario (si existen)

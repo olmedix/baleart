@@ -57,6 +57,7 @@ class SpaceController extends Controller
 
     public function store(GuardarSpaceRequest $request, $regNumber)
     {
+
         // Buscar el espacio por regNumber
         $space = Space::where('regNumber', $regNumber)->firstOrFail();
 

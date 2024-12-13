@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Space extends Model
 {
+
     public function address()
     {
         return $this->belongsTo(Address::class);
@@ -26,7 +27,7 @@ class Space extends Model
     {
         return $this->belongsToMany(Modality::class);
     }
-    
+
     public function services()
     {
         return $this->belongsToMany(Service::class);

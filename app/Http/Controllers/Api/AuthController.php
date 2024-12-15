@@ -82,7 +82,7 @@ class AuthController extends Controller
     {
         Auth::user()->tokens()->delete();
         return response()->json([
-            'message' => 'Logout successful'
+            'message' => 'Logout ha sido un éxito'
         ]);
     }
 }

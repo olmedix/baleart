@@ -12,8 +12,13 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
+
 //USERS
-Route::apiresource('users', UserController::class);
+Route::middleware([ApiKeyMiddleware::class])->group(function () {
+    Route::put('/users/{value}', [UserController::class, 'update']);
+    Route::apiresource('users', UserController::class);
+});
+
 
 //SPACES
 Route::post('/spaces/{regNumber}', [SpaceController::class, 'store']);

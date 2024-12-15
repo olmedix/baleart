@@ -61,11 +61,32 @@ class UserController extends Controller
         ], 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $email)
     {
-        //TO DO
+        $user = User::where('email', $email)->with('comments.images', 'spaces')->first();
+
+        if (!$user) {
+            return response()->json(['message' => 'Usuario no encontrado'], 404);
+        }
+
+        // Eliminar comentarios y fotos relacionadas
+        if ($user->comments) {
+            foreach ($user->comments as $comment) {
+                if ($comment->images) {
+                    foreach ($comment->images as $image) {
+                        $image->delete();
+                    }
+                }
+                $comment->delete();
+            }
+        }
+
+        // Eliminar relaciones con spaces
+        $user->spaces()->detach();
+
+        // Eliminar el usuario
+        $user->delete();
+
+        return response()->json(['message' => 'Usuario y sus relaciones eliminados correctamente'], 200);
     }
 }

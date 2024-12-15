@@ -2,35 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserResource;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\GuardarUserRequest;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function show(string $email)
     {
-        //
-    }
+        $user = User::where('email', $email)
+            ->with(['spaces', 'comments', 'comments.images'])
+            ->first();
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        if (!$user) {
+            return response()->json(['message' => 'Usuario no encontrado'], 404);
+        }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        //return response()->json($user, 200);
+        return new UserResource($user);
     }
 
 
@@ -76,6 +66,6 @@ class UserController extends Controller
      */
     public function destroy(string $email)
     {
-        //
+        //TO DO
     }
 }

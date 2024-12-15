@@ -15,9 +15,10 @@ Route::get('/user', function (Request $request) {
 
 //USERS
 Route::middleware([ApiKeyMiddleware::class])->group(function () {
-    Route::put('/users/{value}', [UserController::class, 'update']);
-    Route::apiresource('users', UserController::class);
+    Route::put('/user/{value}', [UserController::class, 'update']);
+
 });
+Route::apiresource('user', UserController::class);
 
 
 //SPACES

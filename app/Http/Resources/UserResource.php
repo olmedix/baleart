@@ -14,7 +14,6 @@ class UserResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        //return parent::toArray($request);
         return [
             "id" => $this->id,
             "nombre" => $this->name,
@@ -23,6 +22,8 @@ class UserResource extends JsonResource
             "telefono" => $this->phone,
             "fecha_creacion" => $this->created_at->format('Y-m-d H:i:s'),
             "fecha_actualizacion" => $this->updated_at->format('Y-m-d H:i:s'),
+            'spaces' => SpaceResource::collection($this->whenLoaded('spaces')),
+            'comments' => CommentResource::collection($this->whenLoaded('comments')),
         ];
     }
 }

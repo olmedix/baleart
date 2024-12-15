@@ -85,4 +85,13 @@ class AuthController extends Controller
             'message' => 'Logout ha sido un éxito'
         ]);
     }
+
+    public function protectedRoute()
+    {
+        return response()->json([
+            'message' => 'Aquesta és una ruta protegida per API Key',
+            'user' => Auth::user(), // Si deseas incluir información del usuario autenticado
+        ]);
+    }
+
 }

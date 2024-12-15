@@ -2,6 +2,10 @@
 
 return [
 
+    //Esto te permitirá usar config('app.api_key') para obtener la clave configurada.
+    'api_key' => env('API_KEY', 'default-key'),
+
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

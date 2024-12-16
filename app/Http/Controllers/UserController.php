@@ -82,7 +82,7 @@ class UserController extends Controller
         }
 
         // Eliminar relaciones con spaces
-        $user->spaces()->detach();
+        $user->spaces()->delete();
 
         // Eliminar el usuario
         $user->delete();

@@ -16,7 +16,7 @@ class GuardarSpaceRequest extends FormRequest
     {
         return [
             'comment' => 'required|string|max:500',
-            'score' => 'required|numeric|min:0|max:5',
+            'score' => 'required|integer|in:0,1,2,3,4,5',
             'images' => 'nullable|array',
             'images.*' => 'string|max:100',
         ];
@@ -29,8 +29,7 @@ class GuardarSpaceRequest extends FormRequest
             'comment.max' => 'El comentario no puede exceder los 500 caracteres.',
             'score.required' => 'La puntuación no puede estar vacía.',
             'score.numeric' => 'La puntuación debe ser un número.',
-            'score.max' => 'La puntuación no puede ser mayor a 5.',
-            'score.min' => 'La puntuación no puede ser menor a 0.',
+            'score.in' => 'La puntuación debe ser un número entre 0 y 5.',
             'images.*.max' => 'La url de la imagen no debe exceder los 100 caracteres.',
         ];
     }

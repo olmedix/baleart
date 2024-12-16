@@ -13,14 +13,9 @@ use App\Http\Resources\CommentResource;
 
 class SpaceResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @return array<string, mixed>
-     */
+
     public function toArray(Request $request): array
     {
-        //return parent::toArray($request);
 
         return [
             'id' => $this->id,
@@ -33,7 +28,7 @@ class SpaceResource extends JsonResource
             'telefono' => $this->phone,
             'web' => $this->website,
             'tipo_acceso' => $this->access_types,
-            'puntuacion_total' => $this->totalScore,
+            'puntuacion_total' => $this->countScore != 0 ? $this->totalScore / $this->countScore : 0,
             'puntuacion_contador' => $this->countScore,
             'fecha_creacion' => $this->created_at->format('Y-m-d H:i:s'),
             'fecha_actualizacion' => $this->updated_at->format('Y-m-d H:i:s'),

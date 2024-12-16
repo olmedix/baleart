@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\GuardarSpaceRequest;
 use App\Models\Space;
-use App\Models\SpaceType;
 use Illuminate\Http\Request;
 use App\Http\Resources\SpaceResource;
 
@@ -24,11 +23,8 @@ class SpaceController extends Controller
         }
 
         // Recuperar espacios con paginación para evitar grandes volúmenes de datos
-        $spaces = $query->paginate(15);
+        $spaces = $query->get();
 
-        // Devolver respuesta formateada con metadatos
-
-        //return response()->json($spaces);
         return SpaceResource::collection($spaces)->additional(['meta' => 'Espacio encontrado correctamente']);
     }
 
@@ -49,10 +45,9 @@ class SpaceController extends Controller
 
         $space = is_numeric($value)
             ? $query->findOrFail($value)  // Busca por 'id'
-            : $query->where('regNumber', $value)->firstOrFail(); // Busca por 'regNumber'
+            : $query->where('regNumber', $value)->firstOrFail();
 
         return (new SpaceResource($space))->additional(['meta' => 'Espacio encontrado correctamente']);
-        //return response()->json($space);
     }
 
     public function store(GuardarSpaceRequest $request, $regNumber)

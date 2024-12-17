@@ -27,7 +27,7 @@ class SpaceResource extends JsonResource
             'telefono' => $this->phone,
             'web' => $this->website,
             'tipo_acceso' => $this->access_types,
-            'puntuacion_total' => $this->countScore != 0 ? $this->totalScore / $this->countScore : 0,
+            'puntuacion_total' => $this->countScore != 0 ? intdiv($this->totalScore, $this->countScore) : 0,
             'puntuacion_contador' => $this->countScore,
             'fecha_creacion' => $this->created_at->format('Y-m-d H:i:s'),
             'fecha_actualizacion' => $this->updated_at->format('Y-m-d H:i:s'),

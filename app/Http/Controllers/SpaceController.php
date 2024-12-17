@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\GuardarSpaceRequest;
 use App\Models\Space;
 use Illuminate\Http\Request;
 use App\Http\Resources\SpaceResource;
+use App\Http\Requests\GuardarSpaceRequest;
+
 
 class SpaceController extends Controller
 {
@@ -60,8 +61,10 @@ class SpaceController extends Controller
         return (new SpaceResource($space))->additional(['meta' => 'Espacio encontrado correctamente']);
     }
 
+
     public function store(GuardarSpaceRequest $request, $regNumber)
     {
+
         $space = Space::where('regNumber', $regNumber)->firstOrFail();
 
         // Crear el comentario asociado al space,no es necesario añadir el space_id ya que se hace automáticamente.
@@ -69,7 +72,8 @@ class SpaceController extends Controller
             'comment' => $request->input('comment'),
             'score' => $request->input('score'),
             'status' => 'n',
-            'user_id' => auth()->id(), // Usar el ID del usuario autenticado
+            //'user_id' => auth()->id(), // Usar el ID del usuario autenticado
+            'user_id' => 1
         ]);
 
         // Agregar imágenes asociadas al comentario (si existen)
@@ -82,6 +86,10 @@ class SpaceController extends Controller
             'comentario' => $comment,
             'mensaje' => 'Comentario creado correctamente',
         ]);
+
     }
+
+
+
 
 }

@@ -24,6 +24,7 @@ class UserResource extends JsonResource
             "fecha_actualizacion" => $this->updated_at->format('Y-m-d H:i:s'),
             'spaces' => SpaceResource::collection($this->whenLoaded('spaces')),
             'comments' => CommentResource::collection($this->whenLoaded('comments')),
+            "rol" => $this->role->name,
         ];
     }
 }

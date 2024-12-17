@@ -15,6 +15,7 @@ class GuardarSpaceRequest extends FormRequest
     public function rules(): array
     {
         return [
+
             'comment' => 'required|string|max:500',
             'score' => 'required|integer|in:0,1,2,3,4,5',
             'images' => 'nullable|array',

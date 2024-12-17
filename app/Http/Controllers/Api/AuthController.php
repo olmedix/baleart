@@ -84,7 +84,7 @@ class AuthController extends Controller
         auth()->user()->tokens()->delete();
 
         return response()->json([
-            'message' => 'Tokens eliminados'
+            'message' => 'Sesión finalizada correctamente',
         ]);
     }
 

@@ -29,21 +29,21 @@ return Application::configure(basePath: dirname(__DIR__))
         $exceptions->render(function (NotFoundHttpException $e, $request) {
             if ($request->is('api/*')) {
                 return response()->json([
-                    'message' => 'Element not found',
+                    'message' => 'Elemento no encontrado',
                 ], 404);
             }
         });
 
-        // Manejar errores relacionados con Sanctum
+
         $exceptions->render(function (\Illuminate\Auth\AuthenticationException $e, $request) {
             if ($request->is('api/*')) {
                 return response()->json([
-                    'message' => 'Unauthenticated, please login',
+                    'message' => 'Acceso denegado, autentíquese',
                 ], 401);
             }
         });
 
-        // Manejo genérico de cualquier otra excepción en rutas de API
+        // Manejar excepciones de validación
         $exceptions->render(function (\Exception $e, $request) {
             if ($request->is('api/*')) {
                 return response()->json([

@@ -9,9 +9,7 @@ use App\Http\Controllers\Api\AuthController;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
-//SPACES
-Route::post('/spaces/{regNumber}', [SpaceController::class, 'store']);
-Route::apiresource('spaces', SpaceController::class);
+
 
 Route::middleware('auth:sanctum')->group(function () {
     //Logout
@@ -21,7 +19,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/user/{value}', [UserController::class, 'update']);
     Route::apiresource('user', UserController::class);
 
-
+    //SPACES
+    Route::post('/spaces/{regNumber}', [SpaceController::class, 'store']);
+    Route::apiresource('spaces', SpaceController::class);
 
 });
 

@@ -12,7 +12,17 @@ class SpaceController extends Controller
 
     public function index(Request $request)
     {
-        $query = Space::with(["address", "modalities", "services", "spaceType", "comments", "comments.images", "user"]);
+        $query = Space::with([
+            "address",
+            "modalities",
+            "services",
+            "spaceType",
+            "comments" => function ($query) {
+                $query->where("status", "y");
+            },
+            "comments.images",
+            "user"
+        ]);
 
         // Aplicar filtro por isla si se pasa en la solicitud
         if ($request->has('island')) {
@@ -22,7 +32,6 @@ class SpaceController extends Controller
             });
         }
 
-        // Recuperar espacios con paginación para evitar grandes volúmenes de datos
         $spaces = $query->get();
 
         return SpaceResource::collection($spaces)->additional(['meta' => 'Espacio encontrado correctamente']);
@@ -32,13 +41,14 @@ class SpaceController extends Controller
 
     public function show($value)
     {
-
         $query = Space::with([
             "address",
             "modalities",
             "services",
             "spaceType",
-            "comments",
+            "comments" => function ($query) {
+                $query->where("status", "y");
+            },
             "comments.images",
             "user"
         ])->get();
@@ -52,8 +62,6 @@ class SpaceController extends Controller
 
     public function store(GuardarSpaceRequest $request, $regNumber)
     {
-
-        // Buscar el espacio por regNumber
         $space = Space::where('regNumber', $regNumber)->firstOrFail();
 
         // Crear el comentario asociado al space,no es necesario añadir el space_id ya que se hace automáticamente.
@@ -61,8 +69,7 @@ class SpaceController extends Controller
             'comment' => $request->input('comment'),
             'score' => $request->input('score'),
             'status' => 'n',
-            //'user_id' => auth()->id(), // Usar el ID del usuario autenticado
-            'user_id' => 1 // USO DE PRUEBA,ELIMINAR !!!!!
+            'user_id' => auth()->id(), // Usar el ID del usuario autenticado
         ]);
 
         // Agregar imágenes asociadas al comentario (si existen)

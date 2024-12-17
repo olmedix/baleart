@@ -19,7 +19,6 @@ class UserController extends Controller
             return response()->json(['message' => 'Usuario no encontrado'], 404);
         }
 
-        //return response()->json($user, 200);
         return new UserResource($user);
     }
 

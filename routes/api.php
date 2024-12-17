@@ -10,28 +10,18 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
 
+Route::middleware([ApiKeyMiddleware::class])->group(function () {
 
-Route::middleware('auth:sanctum')->group(function () {
-    //Logout
-    Route::post('/logout', [AuthController::class, 'logout']);
+    // Si el usuario está autenticado con Sanctum, pasa por el siguiente middleware
+    Route::middleware('auth:sanctum')->group(function () {
+        // Logout
+        Route::post('/logout', [AuthController::class, 'logout']);
+    });
 
-    //USERS
+    // Rutas protegidas por API Key Middleware
     Route::put('/user/{value}', [UserController::class, 'update']);
     Route::apiresource('user', UserController::class);
-
-    //SPACES
     Route::post('/spaces/{regNumber}', [SpaceController::class, 'store']);
     Route::apiresource('spaces', SpaceController::class);
-
 });
-
-//protegidas por API Key Middleware
-Route::middleware([ApiKeyMiddleware::class])->group(function () {
-    Route::get('/protected-route', [AuthController::class, 'protectedRoute']);
-});
-
-
-
-
-
 

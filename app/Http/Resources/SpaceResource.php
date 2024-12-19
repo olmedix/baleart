@@ -28,7 +28,7 @@ class SpaceResource extends JsonResource
             'web' => $this->website,
             'tipo_acceso' => $this->access_types,
             'puntuacion_total' => $this->countScore != 0 ? intdiv($this->totalScore, $this->countScore) : 0,
-            'puntuacion_contador' => $this->countScore,
+            'votos_totales' => $this->countScore,
             'fecha_creacion' => $this->created_at->format('Y-m-d H:i:s'),
             'fecha_actualizacion' => $this->updated_at->format('Y-m-d H:i:s'),
             'direccion' => new AddressResource($this->whenLoaded('address')),

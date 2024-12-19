@@ -14,7 +14,6 @@ class ApiKeyMiddleware
     {
         // Verificar si el usuario está autenticado con Sanctum
         if (Auth::guard('sanctum')->check()) {
-            // Si está autenticado con Sanctum, pasa directamente al siguiente middleware
             return $next($request);
         }
 

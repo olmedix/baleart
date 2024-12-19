@@ -16,12 +16,13 @@ Route::middleware([ApiKeyMiddleware::class])->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         // Logout
         Route::post('/logout', [AuthController::class, 'logout']);
+        // No se puede agregar un comentario si no estas logueado, no hay id del usuario.
+        Route::post('/spaces/{regNumber}', [SpaceController::class, 'store']);
     });
 
     // Rutas protegidas por API Key Middleware
     Route::put('/user/{value}', [UserController::class, 'update']);
     Route::apiresource('user', UserController::class);
-    Route::post('/spaces/{regNumber}', [SpaceController::class, 'store']);
     Route::apiresource('spaces', SpaceController::class);
 });
 

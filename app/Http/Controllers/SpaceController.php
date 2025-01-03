@@ -64,29 +64,42 @@ class SpaceController extends Controller
 
     public function store(GuardarSpaceRequest $request, $regNumber)
     {
-
         $space = Space::where('regNumber', $regNumber)->firstOrFail();
 
-        // Crear el comentario asociado al space,no es necesario añadir el space_id ya que se hace automáticamente.
-        $comment = $space->comments()->create([
-            'comment' => $request->input('comment'),
-            'score' => $request->input('score'),
-            'status' => 'n',
-            'user_id' => auth()->id(), // Usar el ID del usuario autenticado
-        ]);
+        $comments = $request->input('comments', []);
+        $createdComments = [];
 
-        // Agregar imágenes asociadas al comentario (si existen)
-        $images = $request->input('images', []); // Obtener las imágenes o un array vacío
-        foreach ($images as $url) {
-            $comment->images()->create(['url' => $url]);
+        foreach ($comments as $commentData) {
+
+            $comment = $space->comments()->create([
+                'comment' => $commentData['comment'],
+                'score' => $commentData['score'],
+                'status' => 'n',
+                'user_id' => auth()->id(),
+            ]);
+
+            // Agregar imágenes asociadas a este comentario (si existen)
+            $images = $commentData['images'] ?? [];
+            foreach ($images as $url) {
+                $comment->images()->create(['url' => $url]);
+            }
+
+            // Agregar el comentario y sus imágenes al array de response
+            $createdComments[] = [
+                'id' => auth()->id(),
+                'comment' => $comment->comment,
+                'score' => $comment->score,
+                'user_id' => $comment->user_id,
+                'images' => $comment->images->pluck('url')->toArray(),
+            ];
         }
 
         return response()->json([
-            'comentario' => $comment,
-            'mensaje' => 'Comentario creado correctamente',
-        ]);
-
+            'comments' => $createdComments,
+            'message' => 'Comentarios creados correctamente',
+        ], 201);
     }
+
 
 
 

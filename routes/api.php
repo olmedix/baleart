@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SpaceController;
+use App\Http\Controllers\MunicipalityController;
 use App\Http\Middleware\ApiKeyMiddleware;
 use App\Http\Controllers\Api\AuthController;
 
@@ -25,5 +26,6 @@ Route::middleware([ApiKeyMiddleware::class])->group(function () {
     Route::put('/user/{value}', [UserController::class, 'update']);
     Route::apiresource('user', UserController::class);
     Route::apiresource('spaces', SpaceController::class);
+    Route::get('/municipalities', [MunicipalityController::class, 'index']);
 });
 

@@ -127,6 +127,7 @@ class ComposerStaticInit2885d372459169ec5a396b7b46f949a0
             'Laravel\\Sail\\' => 13,
             'Laravel\\Prompts\\' => 16,
             'Laravel\\Pail\\' => 13,
+            'Laravel\\Breeze\\' => 15,
         ),
         'I' => 
         array (
@@ -418,6 +419,10 @@ class ComposerStaticInit2885d372459169ec5a396b7b46f949a0
         array (
             0 => __DIR__ . '/..' . '/laravel/pail/src',
         ),
+        'Laravel\\Breeze\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravel/breeze/src',
+        ),
         'Illuminate\\Support\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Macroable',
@@ -514,7 +519,23 @@ class ComposerStaticInit2885d372459169ec5a396b7b46f949a0
     );
 
     public static $classMap = array (
+        'App\\Http\\Controllers\\Api\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/AuthController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\MunicipalityController' => __DIR__ . '/../..' . '/app/Http/Controllers/MunicipalityController.php',
+        'App\\Http\\Controllers\\SpaceController' => __DIR__ . '/../..' . '/app/Http/Controllers/SpaceController.php',
+        'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
+        'App\\Http\\Middleware\\ApiKeyMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/ApiKeyMiddleware.php',
+        'App\\Http\\Requests\\GuardarAuthRequest' => __DIR__ . '/../..' . '/app/Http/Requests/GuardarAuthRequest.php',
+        'App\\Http\\Requests\\GuardarSpaceRequest' => __DIR__ . '/../..' . '/app/Http/Requests/GuardarSpaceRequest.php',
+        'App\\Http\\Requests\\GuardarUserRequest' => __DIR__ . '/../..' . '/app/Http/Requests/GuardarUserRequest.php',
+        'App\\Http\\Resources\\AddressResource' => __DIR__ . '/../..' . '/app/Http/Resources/AddressResource.php',
+        'App\\Http\\Resources\\CommentResource' => __DIR__ . '/../..' . '/app/Http/Resources/CommentResource.php',
+        'App\\Http\\Resources\\ImageResource' => __DIR__ . '/../..' . '/app/Http/Resources/ImageResource.php',
+        'App\\Http\\Resources\\ModalityResource' => __DIR__ . '/../..' . '/app/Http/Resources/ModalityResource.php',
+        'App\\Http\\Resources\\ServiceResource' => __DIR__ . '/../..' . '/app/Http/Resources/ServiceResource.php',
+        'App\\Http\\Resources\\SpaceResource' => __DIR__ . '/../..' . '/app/Http/Resources/SpaceResource.php',
+        'App\\Http\\Resources\\SpaceTypeResource' => __DIR__ . '/../..' . '/app/Http/Resources/SpaceTypeResource.php',
+        'App\\Http\\Resources\\UserResource' => __DIR__ . '/../..' . '/app/Http/Resources/UserResource.php',
         'App\\Models\\Address' => __DIR__ . '/../..' . '/app/Models/Address.php',
         'App\\Models\\Comment' => __DIR__ . '/../..' . '/app/Models/Comment.php',
         'App\\Models\\Image' => __DIR__ . '/../..' . '/app/Models/Image.php',
@@ -2865,6 +2886,12 @@ class ComposerStaticInit2885d372459169ec5a396b7b46f949a0
         'Illuminate\\View\\ViewFinderInterface' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewFinderInterface.php',
         'Illuminate\\View\\ViewName' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewName.php',
         'Illuminate\\View\\ViewServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewServiceProvider.php',
+        'Laravel\\Breeze\\BreezeServiceProvider' => __DIR__ . '/..' . '/laravel/breeze/src/BreezeServiceProvider.php',
+        'Laravel\\Breeze\\Console\\InstallCommand' => __DIR__ . '/..' . '/laravel/breeze/src/Console/InstallCommand.php',
+        'Laravel\\Breeze\\Console\\InstallsApiStack' => __DIR__ . '/..' . '/laravel/breeze/src/Console/InstallsApiStack.php',
+        'Laravel\\Breeze\\Console\\InstallsBladeStack' => __DIR__ . '/..' . '/laravel/breeze/src/Console/InstallsBladeStack.php',
+        'Laravel\\Breeze\\Console\\InstallsInertiaStacks' => __DIR__ . '/..' . '/laravel/breeze/src/Console/InstallsInertiaStacks.php',
+        'Laravel\\Breeze\\Console\\InstallsLivewireStack' => __DIR__ . '/..' . '/laravel/breeze/src/Console/InstallsLivewireStack.php',
         'Laravel\\Pail\\Console\\Commands\\PailCommand' => __DIR__ . '/..' . '/laravel/pail/src/Console/Commands/PailCommand.php',
         'Laravel\\Pail\\Contracts\\Printer' => __DIR__ . '/..' . '/laravel/pail/src/Contracts/Printer.php',
         'Laravel\\Pail\\File' => __DIR__ . '/..' . '/laravel/pail/src/File.php',

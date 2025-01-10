@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\AuthController;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 //CAMBIO PARA PERDIDA DE CONTRASEÑA
+Route::get('/user/resetPassword/{email}', [UserController::class, 'getUserForPasswordReset']);
 Route::put('/user/{value}', [UserController::class, 'update']);
 
 

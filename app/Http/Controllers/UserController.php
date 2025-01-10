@@ -22,6 +22,22 @@ class UserController extends Controller
         return new UserResource($user);
     }
 
+    public function getUserForPasswordReset(string $email)
+    {
+        $user = User::where('email', $email)->first();
+
+        if (!$user) {
+            return response()->json(['message' => 'Usuario no encontrado'], 404);
+        }
+
+        return response()->json([
+            'name' => $user->name,
+            'lastName' => $user->lastName,
+            'phone' => $user->phone,
+            'email' => $user->email,
+        ], 200);
+    }
+
 
     public function update(GuardarUserRequest $request, string $value)
     {

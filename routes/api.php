@@ -9,7 +9,8 @@ use App\Http\Controllers\Api\AuthController;
 //AUTH
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-
+//CAMBIO PARA PERDIDA DE CONTRASEÑA
+Route::put('/user/{value}', [UserController::class, 'update']);
 
 
 Route::middleware([ApiKeyMiddleware::class])->group(function () {
@@ -23,7 +24,7 @@ Route::middleware([ApiKeyMiddleware::class])->group(function () {
     });
 
     // Rutas protegidas por API Key Middleware
-    Route::put('/user/{value}', [UserController::class, 'update']);
+    
     Route::apiresource('user', UserController::class);
     Route::apiresource('spaces', SpaceController::class);
     Route::get('/municipalities', [MunicipalityController::class, 'index']);

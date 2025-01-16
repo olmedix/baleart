@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Comment;
 
+
 class CommentController extends Controller
 {
     public function index(int $userId) {
+
         $comments = Comment::where('user_id', $userId)->get();
     
         if ($comments->isEmpty()) {

@@ -23,6 +23,7 @@ class CommentController extends Controller
                 'comment' => $comment->comment,
                 'status' => $comment->status,
                 'space' => $comment->space->name,
+                'score' => $comment->score,
                 'user' => $comment->user_id,
                 'created_at' => $comment->created_at,
                 'updated_at' => $comment->updated_at

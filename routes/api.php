@@ -3,6 +3,7 @@
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SpaceController;
 use App\Http\Controllers\MunicipalityController;
+use App\Http\Controllers\CommentController;
 use App\Http\Middleware\ApiKeyMiddleware;
 use App\Http\Controllers\Api\AuthController;
 
@@ -25,9 +26,9 @@ Route::middleware([ApiKeyMiddleware::class])->group(function () {
     });
 
     // Rutas protegidas por API Key Middleware
-
     Route::apiresource('user', UserController::class);
     Route::apiresource('spaces', SpaceController::class);
     Route::get('/municipalities', [MunicipalityController::class, 'index']);
+    Route::get('/comments/{userId}', [CommentController::class, 'index']);
 });
 

@@ -21,6 +21,7 @@ class CommentController extends Controller
             return [
                 'id' => $comment->id,
                 'comment' => $comment->comment,
+                'status' => $comment->status,
                 'space' => $comment->space->name,
                 'user' => $comment->user_id,
                 'created_at' => $comment->created_at,

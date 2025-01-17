@@ -4,6 +4,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SpaceController;
 use App\Http\Controllers\MunicipalityController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\SpaceTypeController;
+use App\Http\Controllers\ModalityController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Middleware\ApiKeyMiddleware;
 use App\Http\Controllers\Api\AuthController;
 
@@ -28,7 +31,14 @@ Route::middleware([ApiKeyMiddleware::class])->group(function () {
     // Rutas protegidas por API Key Middleware
     Route::apiresource('user', UserController::class);
     Route::apiresource('spaces', SpaceController::class);
-    Route::get('/municipalities', [MunicipalityController::class, 'index']);
     Route::get('/comments/{userId}', [CommentController::class, 'index']);
+    Route::get('/municipalities', [MunicipalityController::class, 'index']);
+
+
+    // Rutas para los idiomas
+    Route::get('/typeSpaces', [SpaceTypeController::class, 'index']);
+    Route::get('/modalities', [ModalityController::class, 'index']);
+    Route::get('/services', [ServiceController::class, 'index']);
+    
 });
 

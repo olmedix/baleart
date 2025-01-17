@@ -2,13 +2,11 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SpaceController;
-use App\Http\Controllers\MunicipalityController;
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\SpaceTypeController;
-use App\Http\Controllers\ModalityController;
-use App\Http\Controllers\ServiceController;
 use App\Http\Middleware\ApiKeyMiddleware;
+use App\Http\Controllers\FilterController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\MunicipalityController;
 
 //AUTH
 Route::post('/register', [AuthController::class, 'register']);
@@ -34,11 +32,6 @@ Route::middleware([ApiKeyMiddleware::class])->group(function () {
     Route::get('/comments/{userId}', [CommentController::class, 'index']);
     Route::get('/municipalities', [MunicipalityController::class, 'index']);
 
-
-    // Rutas para los idiomas
-    Route::get('/spaceTypes', [SpaceTypeController::class, 'index']);
-    Route::get('/modalities', [ModalityController::class, 'index']);
-    Route::get('/services', [ServiceController::class, 'index']);
-    
+    Route::get('/filters', [FilterController::class, 'index']);
 });
 

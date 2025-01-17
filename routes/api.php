@@ -36,7 +36,7 @@ Route::middleware([ApiKeyMiddleware::class])->group(function () {
 
 
     // Rutas para los idiomas
-    Route::get('/typeSpaces', [SpaceTypeController::class, 'index']);
+    Route::get('/spaceTypes', [SpaceTypeController::class, 'index']);
     Route::get('/modalities', [ModalityController::class, 'index']);
     Route::get('/services', [ServiceController::class, 'index']);
     

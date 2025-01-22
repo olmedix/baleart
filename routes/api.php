@@ -30,7 +30,7 @@ Route::middleware([ApiKeyMiddleware::class])->group(function () {
     Route::apiresource('user', UserController::class);
     Route::apiresource('spaces', SpaceController::class);
     Route::get('/comments/{userId}', [CommentController::class, 'index']);
-    Route::get('/municipalities', [MunicipalityController::class, 'index']);
+    //Route::get('/municipalities', [MunicipalityController::class, 'index']);
 
     Route::get('/filters', [FilterController::class, 'index']);
 });

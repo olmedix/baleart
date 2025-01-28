@@ -9,11 +9,9 @@ use App\Http\Requests\GuardarUserRequest;
 
 class UserController extends Controller
 {
-    public function show(string $email)
+    public function show()
     {
-        $user = User::where('email', $email)
-            ->with(['spaces', 'comments', 'comments.images'])
-            ->first();
+        $user = User::where('id', auth()->id())->with(['spaces', 'comments', 'comments.images'])->first();
 
         if (!$user) {
             return response()->json(['message' => 'Usuario no encontrado'], 404);
@@ -21,6 +19,7 @@ class UserController extends Controller
 
         return new UserResource($user);
     }
+
 
     public function getUserForPasswordReset(string $email)
     {

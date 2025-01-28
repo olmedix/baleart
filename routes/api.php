@@ -6,7 +6,7 @@ use App\Http\Middleware\ApiKeyMiddleware;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\MunicipalityController;
+
 
 //AUTH
 Route::post('/register', [AuthController::class, 'register']);
@@ -30,7 +30,7 @@ Route::middleware([ApiKeyMiddleware::class])->group(function () {
     Route::apiresource('user', UserController::class);
     Route::apiresource('spaces', SpaceController::class);
     Route::get('/comments/{userId}', [CommentController::class, 'index']);
-    //Route::get('/municipalities', [MunicipalityController::class, 'index']);
+    Route::middleware(['auth:sanctum'])->get('/user', [UserController::class, 'show']);
 
     Route::get('/filters', [FilterController::class, 'index']);
 });

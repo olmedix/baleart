@@ -22,6 +22,7 @@ class CommentResource extends JsonResource
             'puntuacion' => $this->score,
             'estado' => $this->status,
             'usuario' => $this->user->name,
+            'espacio' => $this->space->name,
             'fecha_creacion' => $this->created_at->format('Y-m-d H:i:s'),
             'fecha_actualizacion' => $this->updated_at->format('Y-m-d H:i:s'),
             'imagenes' => ImageResource::collection($this->whenLoaded('images')),

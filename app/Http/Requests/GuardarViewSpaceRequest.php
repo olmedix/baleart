@@ -23,6 +23,7 @@ class GuardarViewSpaceRequest extends FormRequest
             'email' => 'required|string|email|max:100',
             'phone' => 'required|string|max:100',
             'website' => 'required|string|max:100',
+            'services' => 'array|exists:services,id',
         ];
     }
 

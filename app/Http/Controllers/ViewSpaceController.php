@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Modality;
+use App\Models\Service;
 use App\Models\Zone;
 use App\Models\Space;
 use App\Models\Address;
@@ -16,7 +18,7 @@ class ViewSpaceController extends Controller
 
     public function index()
     {
-        $spaces = Space::paginate(5);
+        $spaces = Space::with('modalities', 'services')->paginate(5);
         return view('space.index', ['spaces' => $spaces]);
     }
 
@@ -26,7 +28,9 @@ class ViewSpaceController extends Controller
         $spaceTypes = SpaceType::all();
         $municipalities = Municipality::all();
         $zones = Zone::all();
-        return view('space.create', compact('spaceTypes', 'municipalities', 'zones'));
+        $services = Service::all();
+        $modalities = Modality::all();
+        return view('space.create', compact('spaceTypes', 'municipalities', 'zones', 'services', 'modalities'));
     }
 
     public function store(GuardarViewSpaceRequest $request)
@@ -54,15 +58,22 @@ class ViewSpaceController extends Controller
         $space->user_id = 65;
         // $space->user_id = auth()->id(); // Para usar el usuario autenticado
 
+        if ($request->has('services')) {
+            $space->services()->attach($request->input('services'));
+        }
+
         $space->save();
 
         return redirect()->route('spaces.index')->with('success', 'Espacio creado correctamente');
     }
 
-    public function show(string $id)
+    public function show(Space $space)
     {
-        //
+        $space->load(['address', 'spaceType', 'user']);
+        return view('space.show', ['space' => $space]);
     }
+
+
 
     public function edit(Space $spaceEdit)
     {

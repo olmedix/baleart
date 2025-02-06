@@ -64,17 +64,41 @@
                     <option value="">Seleccione un tipo de acceso</option>
                     <option value="y">Si</option>
                     <option value="n">No</option>
+                    <option value="p">P</option>
                 </select>
             </div>
 
             <!-- Tipo de Espacio -->
-            <label for="space_type_id">Tipo de Espacio:</label>
-            <select name="space_type_id" id="space_type_id" class="form-control">
-                <option value="">Seleccione un tipo de espacio</option>
-                @foreach ($spaceTypes as $type)
-                    <option value="{{ $type->id }}">{{ $type->name }}</option>
-                @endforeach
-            </select>
+            <div class="mb-3">
+                <label for="space_type_id">Tipo de Espacio:</label>
+                <select name="space_type_id" id="space_type_id" class="form-control">
+                    <option value="">Seleccione un tipo de espacio</option>
+                    @foreach ($spaceTypes as $type)
+                        <option value="{{ $type->id }}">{{ $type->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <!-- Servicios -->
+            <div class="mb-3">
+                <label for="services">Servicios:</label>
+                <select name="services[]" id="services" class="form-control" multiple>
+                    @foreach ($services as $service)
+                        <option value="{{ $service->id }}" {{ in_array($service->id, old('services', [])) ? 'selected' : '' }}>
+                            {{ $service->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
+
+
+
+
+
+
+
+
 
             <!-- Datos de la Dirección -->
             <h4 class="mt-8 mb-2 font-bold text-2xl pl-48">Dirección</h4>

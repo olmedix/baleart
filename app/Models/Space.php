@@ -21,7 +21,7 @@ class Space extends Model
         'email',
         'phone',
         'website',
-        'accessType',
+        'access_types',
         'totalScore',
         'countScore',
         'address_id',

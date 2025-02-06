@@ -10,7 +10,17 @@
         <p class="mb-4 text-sm"> <span class="font-bold text-lg">email: </span> {{ $space->email }}</p>
         <p class="mb-4 text-sm"> <span class="font-bold text-lg">phone: </span> {{ $space->phone }}</p>
         <p class="mb-4 text-sm"> <span class="font-bold text-lg">website: </span> {{ $space->website }}</p>
-        <p class="mb-4 text-sm"> <span class="font-bold text-lg">acces type: </span> {{ $space->accessType }}</p>
+        <p class="mb-4 text-sm"> <span class="font-bold text-lg">Modalities:
+                @foreach ($space->modalities as $modality)
+                    <span class="font-normal text-sm"> {{ $modality->name }}, </span>
+                @endforeach
+        </p>
+        <p class="mb-4 text-sm"> <span class="font-bold text-lg">Services:
+                @foreach ($space->services as $service)
+                    <span class="font-normal text-sm"> {{ $service->name }}, </span>
+                @endforeach
+        </p>
+        <p class="mb-4 text-sm"> <span class="font-bold text-lg">acces type: </span> {{ $space->access_types }}</p>
         <p class="mb-4 text-sm"> <span class="font-bold text-lg">total score: </span> {{ $space->totalScore }}</p>
         <p class="mb-4 text-sm"> <span class="font-bold text-lg">count score: </span> {{ $space->countScore }}</p>
         <p class="mb-4 text-sm"> <span class="font-bold text-lg">address: </span> {{ $space->address->name  }}</p>
@@ -18,8 +28,10 @@
         <p class="mb-4 text-sm"> <span class="font-bold text-lg">user: </span> {{ $space->user->name  }}</p>
         <p class="mb-4 text-sm"> <span class="font-bold text-lg">created at: </span> {{ $space->created_at }}</p>
         <p class="mb-4 text-sm"> <span class="font-bold text-lg">updated at: </span> {{ $space->updated_at }}</p>
-        <a href="{{route('spaces.show', ['space' => $space->id])}}"
-            class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Show</a>
+        @if (!request()->is('spaces/*'))
+            <a href="{{route('spaces.show', ['space' => $space->id])}}"
+                class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Show</a>
+        @endif
         <a href="{{route('spaces.edit', ['space' => $space->id])}}"
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</a>
         <form action="{{route('spaces.destroy', ['space' => $space->id])}}" method="POST" class="float-right">

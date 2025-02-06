@@ -1,17 +1,5 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Espacio</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-
-<body>
-    <div class="container mt-5">
-        <h2>Crear Nuevo Espacio</h2>
+<x-app-layout>
+    <div class="container mt-5 w-4/5 mx-auto">
         <form action="{{ route('spaces.store') }}" method="POST">
             @csrf
 
@@ -28,43 +16,46 @@
 
             <!-- Datos del Espacio -->
             <div class="mb-3">
-                <label for="name" class="form-label">Nombre del Espacio</label>
-                <input type="text" class="form-control" id="name" name="name" required>
+                <label for="name" class="form-label block">Nombre del Espacio</label>
+                <input type="text" class="form-control block w-1/2" id="name" name="name" required>
             </div>
 
             <div class="mb-3">
-                <label for="regNumber" class="form-label">Número de Registro</label>
-                <input type="text" class="form-control" id="regNumber" name="regNumber" required>
+                <label for="regNumber" class="form-label block">Número de Registro</label>
+                <input type="text" class="form-control block w-1/2" id="regNumber" name="regNumber" required>
             </div>
 
             <div class="mb-3">
-                <label for="observation_CA" class="form-label">Observación (Catalán)</label>
-                <textarea class="form-control" id="observation_CA" name="observation_CA" rows="3"></textarea>
+                <label for="observation_CA" class="form-label block">Observación (Catalán)</label>
+                <textarea class="form-control block w-1/2" id="observation_CA" name="observation_CA"
+                    rows="3"></textarea>
             </div>
 
             <div class="mb-3">
-                <label for="observation_ES" class="form-label">Observación (Español)</label>
-                <textarea class="form-control" id="observation_ES" name="observation_ES" rows="3"></textarea>
+                <label for="observation_ES" class="form-label block">Observación (Español)</label>
+                <textarea class="form-control block w-1/2" id="observation_ES" name="observation_ES"
+                    rows="3"></textarea>
             </div>
 
             <div class="mb-3">
                 <label for="observation_EN" class="form-label">Observación (Inglés)</label>
-                <textarea class="form-control" id="observation_EN" name="observation_EN" rows="3"></textarea>
+                <textarea class="form-control block w-1/2" id="observation_EN" name="observation_EN"
+                    rows="3"></textarea>
             </div>
 
             <div class="mb-3">
-                <label for="email" class="form-label">Correo Electrónico</label>
-                <input type="email" class="form-control" id="email" name="email">
+                <label for="email" class="form-label block">Correo Electrónico</label>
+                <input type="email" class="form-control block w-1/2" id="email" name="email">
             </div>
 
             <div class="mb-3">
-                <label for="phone" class="form-label">Teléfono</label>
-                <input type="text" class="form-control" id="phone" name="phone">
+                <label for="phone" class="form-label block">Teléfono</label>
+                <input type="text" class="form-control block w-1/2" id="phone" name="phone">
             </div>
 
             <div class="mb-3">
-                <label for="website" class="form-label">Sitio Web</label>
-                <input type="url" class="form-control" id="website" name="website">
+                <label for="website" class="form-label block">Sitio Web</label>
+                <input type="url" class="form-control block w-1/2" id="website" name="website">
             </div>
 
             <div class="mb-3">
@@ -86,10 +77,10 @@
             </select>
 
             <!-- Datos de la Dirección -->
-            <h4>Dirección</h4>
+            <h4 class="mt-8 mb-2 font-bold text-2xl pl-48">Dirección</h4>
             <div class="mb-3">
-                <label for="address_name" class="form-label">Nombre de la Dirección</label>
-                <input type="text" class="form-control" id="address_name" name="address_name" required>
+                <label for="address_name" class="form-label block">Nombre de la Dirección</label>
+                <input type="text" class="form-control w-1/2" id="address_name" name="address_name" required>
             </div>
 
             <div class="mb-3">
@@ -110,9 +101,8 @@
                 </select>
             </div>
 
-            <button type="submit" class="btn btn-primary">Guardar Espacio</button>
+            <button type="submit" class="my-6 ml-48 border border-blue-800 bg-blue-600 font-semibold p-2">Guardar
+                Espacio</button>
         </form>
     </div>
-</body>
-
-</html>
+</x-app-layout>

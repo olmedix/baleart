@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Municipality;
+use App\Models\Zone;
 use App\Models\Space;
 use App\Models\Address;
 use App\Models\SpaceType;
-use App\Models\Zone;
+use App\Models\Municipality;
 use Illuminate\Http\Request;
 use App\Http\Requests\GuardarViewSpaceRequest;
+
 
 class ViewSpaceController extends Controller
 {
@@ -63,19 +64,21 @@ class ViewSpaceController extends Controller
         //
     }
 
-    public function edit(string $id)
+    public function edit(Space $spaceEdit)
     {
-        //
+        return view('space.edit', ['space' => $spaceEdit]);
     }
 
-    public function update(Request $request, string $id)
+    public function update(GuardarViewSpaceRequest $request, Space $spaceEdit)
     {
-        //
+        $spaceEdit->update($request->all());
+        return back(); // Vuelve a la página origen, y vuelve a cargar el registro actualizado
     }
 
 
-    public function destroy(string $id)
+    public function destroy(Space $spaceDelete)
     {
-        //
+        $spaceDelete->delete();
+        return back()->with('status', 'Espacio eliminado correctamente');
     }
 }

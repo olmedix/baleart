@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Address extends Model
 {
+    protected $fillable = ['name', 'municipality_id', 'zone_id'];
+
     public function municipality()
     {
         return $this->belongsTo(Municipality::class);

@@ -12,6 +12,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Space extends Model
 {
+    protected $fillable = [
+        'name',
+        'regNumber',
+        'observation_CA',
+        'observation_ES',
+        'observation_EN',
+        'email',
+        'phone',
+        'website',
+        'accessType',
+        'totalScore',
+        'countScore',
+        'address_id',
+        'space_types_id',
+        'user_id',
+        'created_at',
+        'updated_at',
+    ];
 
     public function address()
     {

@@ -58,11 +58,16 @@ class ViewSpaceController extends Controller
         $space->user_id = 65;
         // $space->user_id = auth()->id(); // Para usar el usuario autenticado
 
+        // Primero debe guardarse el space para darle el id a las tablas intermedias
+        $space->save();
+
         if ($request->has('services')) {
             $space->services()->attach($request->input('services'));
         }
 
-        $space->save();
+        if ($request->has('modalities')) {
+            $space->modalities()->attach($request->input('modalities'));
+        }
 
         return redirect()->route('spaces.index')->with('success', 'Espacio creado correctamente');
     }
@@ -87,9 +92,13 @@ class ViewSpaceController extends Controller
     }
 
 
-    public function destroy(Space $spaceDelete)
+    public function destroy(Space $space)
     {
-        $spaceDelete->delete();
+        // Eliminar relaciones en la tabla pivote antes de borrar el espacio
+        $space->services()->detach();
+        $space->modalities()->detach();
+
+        $space->delete();
         return back()->with('status', 'Espacio eliminado correctamente');
     }
 }

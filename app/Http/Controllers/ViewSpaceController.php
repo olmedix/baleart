@@ -78,12 +78,17 @@ class ViewSpaceController extends Controller
         return view('space.show', ['space' => $space]);
     }
 
-
-
-    public function edit(Space $spaceEdit)
+    public function edit(Space $space)
     {
-        return view('space.edit', ['space' => $spaceEdit]);
+        $spaceTypes = SpaceType::all();
+        $municipalities = Municipality::all();
+        $zones = Zone::all();
+        $services = Service::all();
+        $modalities = Modality::all();
+
+        return view('space.edit', compact('space', 'spaceTypes', 'municipalities', 'zones', 'services', 'modalities'));
     }
+
 
     public function update(GuardarViewSpaceRequest $request, Space $spaceEdit)
     {

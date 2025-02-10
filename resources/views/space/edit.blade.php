@@ -32,9 +32,8 @@
 
             <div class="mb-3">
                 <label for="observation_CA" class="form-label block font-semibold">Observación (Catalán)</label>
-                <textarea class="form-control block w-1/2" style="@error('observation_CA') border-color:RED; @enderror"
-                    name="observation_CA" rows="3">
-                    {{old('observation_CA', $space->observation_CA)}}
+                <textarea class="form-control block w-1/2 text-left"
+                    style="@error('observation_CA') border-color:RED; @enderror" name="observation_CA" rows="3">{{old('observation_CA', $space->observation_CA)}}
                 </textarea>
             </div>
 
@@ -47,8 +46,7 @@
             <div class="mb-3">
                 <label for="observation_EN" class="form-label block font-semibold">Observación (Inglés)</label>
                 <textarea class="form-control block w-1/2" style="@error('observation_EN') border-color:RED; @enderror"
-                    name="observation_EN" rows="3">
-                    {{old('observation_EN', $space->observation_EN) }}
+                    name="observation_EN" rows="3">{{old('observation_EN', $space->observation_EN) }}
                 </textarea>
             </div>
 
@@ -71,11 +69,12 @@
             </div>
 
             <div class="mb-3">
-                <label for="accessType" class="form-label block font-semibold">Tipo de acceso</label>
-                <select name="accessType" class="form-control" style="@error('website') border-color:RED; @enderror">
-                    <option value="y" {{ old('accessType', $space->accessType) == 'y' ? 'selected' : '' }}>Sí</option>
-                    <option value="n" {{ old('accessType', $space->accessType) == 'n' ? 'selected' : '' }}>No</option>
-                    <option value="p" {{ old('accessType', $space->accessType) == 'p' ? 'selected' : '' }}>Parcial
+                <label for="access_types" class="form-label block font-semibold">Tipo de acceso</label>
+                <select name="access_types" class="form-control"
+                    style="@error('accesType') border-color:RED; @enderror">
+                    <option value="y" {{ old('access_types', $space->access_types) == 'y' ? 'selected' : '' }}>Sí</option>
+                    <option value="n" {{ old('access_types', $space->access_types) == 'n' ? 'selected' : '' }}>No</option>
+                    <option value="p" {{ old('access_types', $space->access_types) == 'p' ? 'selected' : '' }}>Parcial
                     </option>
                 </select>
             </div>
@@ -119,8 +118,6 @@
                 </div>
             </section>
 
-
-
             <!-- Datos de la Dirección -->
             <h4 class="text-2xl font-bold my-5">Dirección</h4>
 
@@ -130,7 +127,7 @@
             </div>
 
             <input type="submit"
-                class="my-6 ml-48 border border-blue-800 bg-blue-600 hover:bg-blue-800 hover:text-white font-semibold p-3 rounded-xl cursor-pointer"
+                class="my-6 ml-48 text-white border border-blue-800 bg-blue-600 hover:bg-blue-800 hover:text-white font-semibold p-3 rounded-xl cursor-pointer"
                 value="Update">
         </form>
     </div>

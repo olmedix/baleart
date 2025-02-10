@@ -25,7 +25,7 @@ class Space extends Model
         'totalScore',
         'countScore',
         'address_id',
-        'space_types_id',
+        'space_type_id',
         'user_id',
         'created_at',
         'updated_at',

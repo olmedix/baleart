@@ -81,18 +81,31 @@ class ViewSpaceController extends Controller
     {
         $spaceTypes = SpaceType::all();
         $municipalities = Municipality::all();
-        $zones = Zone::all();
         $services = Service::all();
         $modalities = Modality::all();
         $address = $space->address->name;
 
-        return view('space.edit', compact('space', 'spaceTypes', 'municipalities', 'zones', 'services', 'modalities', 'address'));
+        return view('space.edit', compact('space', 'spaceTypes', 'municipalities', 'services', 'modalities', 'address'));
     }
 
 
     public function update(GuardarViewSpaceRequest $request, Space $space)
     {
-        $space->update($request->all());
+        $space->update($request->except(['services', 'modalities', 'address_name']));
+
+
+        // Actualizar servicios y modalidades (relaciones Many-to-Many)
+        $space->services()->sync($request->input('services', []));
+        $space->modalities()->sync($request->input('modalities', []));
+
+        // Actualizar dirección (relación One-to-One)
+        if ($space->address) {
+            $space->address->update(['name' => $request->input('address_name')]);
+        }
+        // dd($space);
+
+        $space->update();
+
         return back(); // Vuelve a la página origen, y vuelve a cargar el registro actualizado
     }
 

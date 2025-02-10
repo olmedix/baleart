@@ -84,14 +84,15 @@ class ViewSpaceController extends Controller
         $zones = Zone::all();
         $services = Service::all();
         $modalities = Modality::all();
+        $address = $space->address->name;
 
-        return view('space.edit', compact('space', 'spaceTypes', 'municipalities', 'zones', 'services', 'modalities'));
+        return view('space.edit', compact('space', 'spaceTypes', 'municipalities', 'zones', 'services', 'modalities', 'address'));
     }
 
 
-    public function update(GuardarViewSpaceRequest $request, Space $spaceEdit)
+    public function update(GuardarViewSpaceRequest $request, Space $space)
     {
-        $spaceEdit->update($request->all());
+        $space->update($request->all());
         return back(); // Vuelve a la página origen, y vuelve a cargar el registro actualizado
     }
 

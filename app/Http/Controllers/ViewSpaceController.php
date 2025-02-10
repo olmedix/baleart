@@ -18,7 +18,7 @@ class ViewSpaceController extends Controller
 
     public function index()
     {
-        $spaces = Space::with('modalities', 'services')->paginate(5);
+        $spaces = Space::with('modalities', 'services')->orderByDesc('id')->paginate(5);
         return view('space.index', ['spaces' => $spaces]);
     }
 
@@ -55,8 +55,7 @@ class ViewSpaceController extends Controller
         $space->countScore = 0;
         $space->address_id = $address->id; // Se asigna la dirección recién creada
         $space->space_type_id = $request->space_type_id;
-        $space->user_id = 65;
-        // $space->user_id = auth()->id(); // Para usar el usuario autenticado
+        $space->user_id = auth()->id(); // Para usar el usuario autenticado
 
         // Primero debe guardarse el space para darle el id a las tablas intermedias
         $space->save();

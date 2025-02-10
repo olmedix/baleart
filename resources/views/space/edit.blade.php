@@ -51,7 +51,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="email" class="form-label block font-semibold">Correo Electrónico</label>
+                <label for="email" class="form-label block font-semibold">Email</label>
                 <input type="email" class="form-control block w-1/2" style="@error('email') border-color:RED; @enderror"
                     value="{{old('email', $space->email) }}" name="email">
             </div>

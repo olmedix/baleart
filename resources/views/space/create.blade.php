@@ -4,7 +4,7 @@
             @csrf
 
             @if ($errors->any())
-                <div class="alert alert-danger">
+                <div class="bg-red-500 text-white font-semibold p-3 w-1/2">
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -27,44 +27,43 @@
 
             <div class="mb-3">
                 <label for="observation_CA" class="form-label block font-semibold">Observación (Catalán)</label>
-                <textarea class="form-control block w-1/2" id="observation_CA" name="observation_CA"
-                    rows="3"></textarea>
+                <textarea class="form-control block w-1/2" id="observation_CA" name="observation_CA" rows="3"
+                    required></textarea>
             </div>
 
             <div class="mb-3">
                 <label for="observation_ES" class="form-label block font-semibold">Observación (Español)</label>
-                <textarea class="form-control block w-1/2" id="observation_ES" name="observation_ES"
-                    rows="3"></textarea>
+                <textarea class="form-control block w-1/2" id="observation_ES" name="observation_ES" rows="3"
+                    required></textarea>
             </div>
 
             <div class="mb-3">
                 <label for="observation_EN" class="form-label font-semibold">Observación (Inglés)</label>
-                <textarea class="form-control block w-1/2" id="observation_EN" name="observation_EN"
-                    rows="3"></textarea>
+                <textarea class="form-control block w-1/2" id="observation_EN" name="observation_EN" rows="3"
+                    required></textarea>
             </div>
 
             <div class="mb-3">
                 <label for="email" class="form-label block font-semibold">Correo Electrónico</label>
-                <input type="email" class="form-control block w-1/2" id="email" name="email">
+                <input type="email" class="form-control block w-1/2" id="email" name="email" required>
             </div>
 
             <div class="mb-3">
                 <label for="phone" class="form-label block font-semibold">Teléfono</label>
-                <input type="text" class="form-control block w-1/2" id="phone" name="phone">
+                <input type="text" class="form-control block w-1/2" id="phone" name="phone" required>
             </div>
 
             <div class="mb-3">
                 <label for="website" class="form-label block font-semibold">Sitio Web</label>
-                <input type="url" class="form-control block w-1/2" id="website" name="website">
+                <input type="url" class="form-control block w-1/2" id="website" name="website" required>
             </div>
 
             <div class="mb-3">
                 <label class="block font-semibold" for="accessType">Tipo de acceso</label>
                 <select name="accessType" id="accessType" class="form-control">
-                    <option value="">Seleccione un tipo de acceso</option>
                     <option value="y">Si</option>
                     <option value="n">No</option>
-                    <option value="p">P</option>
+                    <option value="p">Parcial</option>
                 </select>
             </div>
 
@@ -72,7 +71,6 @@
             <div class="mb-3">
                 <label class="block font-semibold" for="space_type_id">Tipo de Espacio:</label>
                 <select name="space_type_id" id="space_type_id" class="form-control">
-                    <option value="">Seleccione un tipo de espacio</option>
                     @foreach ($spaceTypes as $type)
                         <option value="{{ $type->id }}">{{ $type->name }}</option>
                     @endforeach
@@ -85,7 +83,7 @@
 
                 <!-- Servicios -->
                 <div class="mb-3 mr-28">
-                    <label class="block font-semibold mt-2" for="services">Services</label>
+                    <label class="block font-semibold mt-2" for="services">Servicios</label>
                     <select name="services[]" id="services" class="form-control h-52" multiple>
                         @foreach ($services as $service)
                             <option value="{{ $service->id }}">
@@ -97,7 +95,7 @@
 
                 <!-- Modalidades -->
                 <div class="mb-3">
-                    <label class="block font-semibold mt-2" for="modalities">Modalities</label>
+                    <label class="block font-semibold mt-2" for="modalities">Modalidades</label>
                     <select name="modalities[]" id="modalities" class="form-control h-52" multiple>
                         @foreach ($modalities as $modality)
                             <option value="{{ $modality->id }}">
@@ -135,7 +133,7 @@
             </div>
 
             <button type="submit"
-                class="my-6 ml-48 border border-blue-800 bg-blue-600 hover:bg-blue-800 hover:text-white font-semibold p-2">Guardar
+                class="my-6 ml-48 text-white border border-blue-800 bg-blue-600 hover:bg-blue-800 hover:text-white font-semibold p-2">Guardar
                 Espacio</button>
         </form>
     </div>

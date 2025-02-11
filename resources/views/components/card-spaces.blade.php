@@ -4,10 +4,11 @@
         <h3 class="mb-4 text-xl font-bold leading-tight"> Número de registro: {{ $space->regNumber }}</h3>
 
 
-        <p class="mb-4 text-sm"> <span class="font-bold text-lg">Observació: </span> {{$space->observation_CA}}</p>
-        <p class="mb-4 text-sm"> <span class="font-bold text-lg">Observación: </span> {{$space->observation_ES}}</p>
-        <p class="mb-4 text-sm"> <span class="font-bold text-lg">Observation: </span> {{$space->observation_EN}}</p>
-        <p class="mb-4 text-sm"> <span class="font-bold text-lg">Email: </span> {{ $space->email }}</p>
+        <p class="text-sm"> <span class="font-bold text-lg ">Observació: </span>
+            {!! $space->observation_CA !!}</p>
+        <p class="mt-4 text-sm"> <span class="font-bold text-lg">Observación: </span> {!! $space->observation_ES !!}</p>
+        <p class="mt-4 text-sm"> <span class="font-bold text-lg">Observation: </span> {!! $space->observation_EN !!}</p>
+        <p class="my-4 text-sm"> <span class="font-bold text-lg">Email: </span> {{ $space->email }}</p>
         <p class="mb-4 text-sm"> <span class="font-bold text-lg">Teléfono: </span> {{ $space->phone }}</p>
         <p class="mb-4 text-sm"> <span class="font-bold text-lg">Página web: </span> {{ $space->website }}</p>
         <p class="mb-4 text-sm"> <span class="font-bold text-lg">Modalidades:

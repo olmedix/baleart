@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Modality;
-use App\Models\Service;
 use App\Models\Zone;
+use App\Models\Image;
 use App\Models\Space;
 use App\Models\Address;
+use App\Models\Comment;
+use App\Models\Service;
+use App\Models\Modality;
 use App\Models\SpaceType;
 use App\Models\Municipality;
 use Illuminate\Http\Request;
@@ -41,24 +43,22 @@ class ViewSpaceController extends Controller
             'zone_id' => (int) $request->zone_id,
         ]);
 
-        $space = new Space();
-        $space->name = $request->name;
-        $space->regNumber = $request->regNumber;
-        $space->observation_CA = $request->observation_CA;
-        $space->observation_ES = $request->observation_ES;
-        $space->observation_EN = $request->observation_EN;
-        $space->email = $request->email;
-        $space->phone = $request->phone;
-        $space->website = $request->website;
-        $space->access_types = $request->input('accessType');
-        $space->totalScore = 0;
-        $space->countScore = 0;
-        $space->address_id = $address->id; // Se asigna la dirección recién creada
-        $space->space_type_id = $request->space_type_id;
-        $space->user_id = auth()->id(); // Para usar el usuario autenticado
-
-        // Primero debe guardarse el space para darle el id a las tablas intermedias
-        $space->save();
+        $space = Space::create([
+            'name' => $request->name,
+            'regNumber' => $request->regNumber,
+            'observation_CA' => $request->observation_CA,
+            'observation_ES' => $request->observation_ES,
+            'observation_EN' => $request->observation_EN,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'website' => $request->website,
+            'access_types' => $request->input('accessType'),
+            'totalScore' => 0,
+            'countScore' => 0,
+            'address_id' => $address->id, // Se asigna la dirección recién creada
+            'space_type_id' => $request->space_type_id,
+            'user_id' => auth()->id(), // Para usar el usuario autenticado
+        ]);
 
         if ($request->has('services')) {
             $space->services()->attach($request->input('services'));
@@ -112,6 +112,17 @@ class ViewSpaceController extends Controller
 
     public function destroy(Space $space)
     {
+
+        $comments = Comment::where('space_id', $space->id)->get();
+        foreach ($comments as $comment) {
+            // Eliminar imágenes asociadas al comentario
+            $images = Image::where('comment_id', $comment->id)->get();
+            foreach ($images as $image) {
+                $image->delete();
+            }
+            $comment->delete();
+        }
+
         // Eliminar relaciones en la tabla pivote antes de borrar el espacio
         $space->services()->detach();
         $space->modalities()->detach();

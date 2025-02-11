@@ -30,23 +30,25 @@
                     value="{{old('regNumber', $space->regNumber)}}" name="regNumber">
             </div>
 
-            <div class="mb-3">
-                <label for="observation_CA" class="form-label block font-semibold">Observación (Catalán)</label>
-                <textarea class="form-control block w-1/2 text-left"
+            <div class="mb-3 editor-container">
+                <label for="observation_CA" class="form-label block font-semibold ">Observación
+                    (Catalán)</label>
+                <textarea class="form-control block w-1/2 text-left editor"
                     style="@error('observation_CA') border-color:RED; @enderror" name="observation_CA" rows="3">{{old('observation_CA', $space->observation_CA)}}
                 </textarea>
             </div>
 
-            <div class="mb-3">
-                <label for="observation_ES" class="form-label block font-semibold">Observación (Español)</label>
-                <textarea class="form-control block w-1/2" style="@error('observation_ES') border-color:RED; @enderror"
-                    name="observation_ES" rows="3">{{old('observation_ES', $space->observation_ES) }}</textarea>
+            <div class="mb-3 editor-container">
+                <label for="observation_ES" class="form-label block font-semibold ">Observación (Español)</label>
+                <textarea class="form-control block w-1/2 editor"
+                    style="@error('observation_ES') border-color:RED; @enderror" name="observation_ES"
+                    rows="3">{{old('observation_ES', $space->observation_ES) }}</textarea>
             </div>
 
-            <div class="mb-3">
-                <label for="observation_EN" class="form-label block font-semibold">Observación (Inglés)</label>
-                <textarea class="form-control block w-1/2" style="@error('observation_EN') border-color:RED; @enderror"
-                    name="observation_EN" rows="3">{{old('observation_EN', $space->observation_EN) }}
+            <div class="mb-3 editor-container">
+                <label for="observation_EN" class="form-label block font-semibold ">Observación (Inglés)</label>
+                <textarea class="form-control block w-1/2 editor"
+                    style="@error('observation_EN') border-color:RED; @enderror" name="observation_EN" rows="3">{{old('observation_EN', $space->observation_EN) }}
                 </textarea>
             </div>
 
@@ -131,5 +133,31 @@
                 value="Update">
         </form>
     </div>
+
+    <script>
+        const {
+            ClassicEditor,
+            Essentials,
+            Bold,
+            Italic,
+            Font,
+            Paragraph
+        } = CKEDITOR;
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll('.editor').forEach(editor => {
+                ClassicEditor
+                    .create(editor, {
+                        licenseKey: 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NzA4NTQzOTksImp0aSI6ImRmMTg0ZjAyLTBhZDItNGJlMC1iYjdmLTM5YTdiNDQ5ZGY3YSIsImxpY2Vuc2VkSG9zdHMiOlsiMTI3LjAuMC4xIiwibG9jYWxob3N0IiwiMTkyLjE2OC4qLioiLCIxMC4qLiouKiIsIjE3Mi4qLiouKiIsIioudGVzdCIsIioubG9jYWxob3N0IiwiKi5sb2NhbCJdLCJ1c2FnZUVuZHBvaW50IjoiaHR0cHM6Ly9wcm94eS1ldmVudC5ja2VkaXRvci5jb20iLCJkaXN0cmlidXRpb25DaGFubmVsIjpbImNsb3VkIiwiZHJ1cGFsIl0sImxpY2Vuc2VUeXBlIjoiZGV2ZWxvcG1lbnQiLCJmZWF0dXJlcyI6WyJEUlVQIl0sInZjIjoiNzhkYmQ1MGIifQ.pqqrxqor7a8k8utf8cKOzFD_4pMG-de4CvNgbSvYZq2QSuWOIjV5HpXx3lww-t9Goe6ZepiA_mxHo-FOE79SQA',
+                        plugins: [Essentials, Bold, Italic, Font, Paragraph],
+                        toolbar: [
+                            'undo', 'redo', '|', 'bold', 'italic', '|',
+                            'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', '|'
+                        ]
+                    })
+                    .catch(error => console.error('Error al inicializar CKEditor:', error));
+            });
+        });
+    </script>
 
 </x-app-layout>

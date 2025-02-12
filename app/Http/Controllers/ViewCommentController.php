@@ -3,13 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Comment;
+
 
 class ViewCommentController extends Controller
 {
 
     public function index()
     {
-        //
+        $comments = Comment::with('space', 'images')
+            ->orderByDesc('comments.id')
+            ->paginate(5);
+
+        return view('comment.index', ['comments' => $comments]);
+    }
+
+    public function show(Comment $comment)
+    {
+        return view('comment.show', ['comment' => $comment]);
     }
 
 
@@ -25,10 +36,7 @@ class ViewCommentController extends Controller
     }
 
 
-    public function show(string $id)
-    {
-        //
-    }
+
 
     public function edit(string $id)
     {

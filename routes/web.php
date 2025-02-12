@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ViewSpaceController;
+use App\Http\Controllers\ViewCommentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,6 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('/spaces', ViewSpaceController::class);
+    Route::resource('/comments', ViewCommentController::class);
 });
 
 

@@ -19,6 +19,10 @@
                     <x-nav-link :href="route('spaces.index')" :active="request()->routeIs('spaces.index')">
                         {{ __('Espacios') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('comments.index')" :active="request()->routeIs('comments.index')">
+                        {{ __('Comentarios') }}
+                    </x-nav-link>
                 </div>
 
                 
@@ -75,6 +79,14 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('spaces.index')" :active="request()->routeIs('spaces.index')">
+                        {{ __('Espacios') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('comments.index')" :active="request()->routeIs('comments.index')">
+                        {{ __('Comentarios') }}
             </x-responsive-nav-link>
         </div>
 

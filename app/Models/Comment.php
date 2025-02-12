@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Comment extends Model
 {
     use HasFactory;
-    protected $fillable = ['comment', 'score', 'user_id'];
+    protected $fillable = ['comment', 'status', 'score', 'user_id'];
 
     public function images()
     {

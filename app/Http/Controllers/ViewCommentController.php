@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Image;
 use App\Models\Comment;
+use Illuminate\Http\Request;
 
 
 class ViewCommentController extends Controller
@@ -49,8 +50,14 @@ class ViewCommentController extends Controller
         //
     }
 
-    public function destroy(string $id)
+    public function destroy(Comment $comment)
     {
-        //
+        $images = Image::where('comment_id', $comment->id)->get();
+        foreach ($images as $image) {
+            $image->delete();
+        }
+
+        $comment->delete();
+        return back()->with('status', 'Comentario eliminado correctamente');
     }
 }

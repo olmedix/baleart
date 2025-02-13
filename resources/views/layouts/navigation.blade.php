@@ -23,6 +23,10 @@
                     <x-nav-link :href="route('comments.index')" :active="request()->routeIs('comments.index')">
                         {{ __('Comentarios') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+                        {{ __('Usuarios') }}
+                    </x-nav-link>
                 </div>
 
                 
@@ -87,6 +91,10 @@
 
             <x-responsive-nav-link :href="route('comments.index')" :active="request()->routeIs('comments.index')">
                         {{ __('Comentarios') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+                        {{ __('Usuarios') }}
             </x-responsive-nav-link>
         </div>
 

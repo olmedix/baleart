@@ -20,9 +20,14 @@ class ViewSpaceController extends Controller
 
     public function index()
     {
-        $spaces = Space::with('modalities', 'services')->orderByDesc('id')->paginate(5);
+        $spaces = Space::with('modalities', 'services')
+            ->selectRaw('*, CASE WHEN countScore = 0 THEN totalScore ELSE totalScore / countScore END as score_avg')
+            ->orderByDesc('score_avg')
+            ->paginate(5);
+
         return view('space.index', ['spaces' => $spaces]);
     }
+
 
 
     public function create()

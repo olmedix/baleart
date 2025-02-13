@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ViewSpaceController;
 use App\Http\Controllers\ViewCommentController;
+use App\Http\Controllers\ViewUserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,6 +21,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/spaces', ViewSpaceController::class);
     Route::resource('/comments', ViewCommentController::class);
+    Route::resource('/users', ViewUserController::class);
 });
 
 

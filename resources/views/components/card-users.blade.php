@@ -19,12 +19,16 @@
             @endif
             <a href="{{route('users.edit', ['user' => $user->id])}}"
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-2 h-10 rounded">Editar</a>
-            <form action="{{route('users.destroy', ['user' => $user->id])}}" method="POST" class="float-right">
-                @method('DELETE')
-                @csrf
-                <button type="submit"
-                    class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Eliminar</button>
-            </form>
+
+            @if($user->role->name != 'administrador' && $user->role->name != 'gestor')
+
+                <form action="{{route('users.destroy', ['user' => $user->id])}}" method="POST" class="float-right">
+                    @method('DELETE')
+                    @csrf
+                    <button type="submit"
+                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Eliminar</button>
+                </form>
+            @endif
         </div>
 
     </div>

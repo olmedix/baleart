@@ -25,67 +25,36 @@
 
             <div class="mb-3">
                 <label for="score" class="form-label block font-semibold">Puntuación</label>
-                <input type="text" class="form-control block w-1/2" style="@error('score') border-color:RED; @enderror"
-                    value="{{old('score', $comment->score)}}" name="score">
-            </div>
-
-
-            <div class="mb-3">
-                <label for="access_types" class="form-label block font-semibold">Tipo de acceso</label>
-                <select name="access_types" class="form-control"
-                    style="@error('accesType') border-color:RED; @enderror">
-                    <option value="y" {{ old('access_types', $space->access_types) == 'y' ? 'selected' : '' }}>Sí</option>
-                    <option value="n" {{ old('access_types', $space->access_types) == 'n' ? 'selected' : '' }}>No</option>
-                    <option value="p" {{ old('access_types', $space->access_types) == 'p' ? 'selected' : '' }}>Parcial
-                    </option>
+                <select name="score" class="form-control" style="@error('score') border-color:RED; @enderror">
+                    <option value="1" {{ old('score', $comment->score) == 1 ? 'selected' : '' }}>1</option>
+                    <option value="2" {{ old('score', $comment->score) == 2 ? 'selected' : '' }}>2</option>
+                    <option value="3" {{ old('score', $comment->score) == 3 ? 'selected' : '' }}>3</option>
+                    <option value="4" {{ old('score', $comment->score) == 4 ? 'selected' : '' }}>4</option>
+                    <option value="5" {{ old('score', $comment->score) == 5 ? 'selected' : '' }}>5</option>
                 </select>
             </div>
 
-            <!-- Tipo de Espacio -->
             <div class="mb-3">
-                <label for="space_type_id" class="form-label block font-semibold">Tipo de Espacio:</label>
-                <select name="space_type_id" class="form-control">
-                    <option value="">Seleccione un tipo de espacio</option>
-                    @foreach ($spaceTypes as $type)
-                        <option value="{{ $type->id }}" {{ $space->space_type_id == $type->id ? 'selected' : '' }}>
-                            {{ $type->name }}
-                        </option>
-                    @endforeach
+                <label for="status" class="form-label block font-semibold">Estado</label>
+                <select name="status" class="form-control" style="@error('status') border-color:RED; @enderror">
+                    <option value="y" {{ old('status', $comment->status) == 'y' ? 'selected' : '' }}>Sí</option>
+                    <option value="n" {{ old('status', $comment->status) == 'n' ? 'selected' : '' }}>No</option>
                 </select>
             </div>
 
-            <!-- Selección de Servicios -->
-            <section class="flex gap-x-10">
-                <div class="mb-3">
-                    <label for="services" class="form-label block font-semibold">Servicios:</label>
-                    <select name="services[]" id="services" class="form-control h-52" multiple>
-                        @foreach ($services as $service)
-                            <option value="{{ $service->id }}" {{ in_array($service->id, $space->services->pluck('id')->toArray()) ? 'selected' : '' }}>
-                                {{ $service->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-
-                <!-- Selección de Modalidades -->
-                <div class="mb-3">
-                    <label for="modalities" class="form-label block font-semibold">Modalidades:</label>
-                    <select name="modalities[]" id="modalities" class="form-control h-52" multiple>
-                        @foreach ($modalities as $modality)
-                            <option value="{{ $modality->id }}" {{ in_array($modality->id, $space->modalities->pluck('id')->toArray()) ? 'selected' : '' }}>
-                                {{ $modality->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-            </section>
-
-            <!-- Datos de la Dirección -->
-            <h4 class="text-2xl font-bold my-5">Dirección</h4>
+            <div class="mb-3">
+                <label for="space_id" class="form-label block font-semibold">Espacio asociado</label>
+                <input type="text" class="text-gray-500 bg-gray-300 form-control block w-1/2"
+                    style="@error('space_id') border-color:RED; @enderror"
+                    value="{{ old('space_id', $comment->space->name) }}" name="space_id" disabled>
+            </div>
 
             <div class="mb-3">
-                <label for="address_name" class="form-label block font-semibold">Nombre de la calle</label>
-                <input type="text" class="form-control" value="{{$space->address->name}}" name="address_name">
+                <label for="user_id" class="form-label block font-semibold">Usuario</label>
+                <input type="text" class="text-gray-500 bg-gray-300 form-control block w-1/2"
+                    style="@error('user_id') border-color:RED; @enderror"
+                    value="{{ old('user_id', $comment->user->name . ' ' . $comment->user->lastName) }}" name="user_id"
+                    disabled>
             </div>
 
             <input type="submit"

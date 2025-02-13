@@ -102,7 +102,6 @@ class ViewSpaceController extends Controller
         if ($space->address) {
             $space->address->update(['name' => $request->input('address_name')]);
         }
-        // dd($space);
 
         $space->update();
 

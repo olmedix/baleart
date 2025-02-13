@@ -2,7 +2,7 @@
 
     <!-- En caso contrario, mostramos el formulario, es llamada inicial -->
     <div class="container mt-5 w-4/5 mx-auto">
-        <form action="{{ route('comments.update', ['comment' => $comment->id]) }}" method="post">
+        <form action="{{ route('users.update', ['user' => $user->id]) }}" method="post">
             @csrf
             @method('PUT') <!-- Cambio de method a 'PUT', en caso contrario llamaría al show -->
 
@@ -18,46 +18,30 @@
             @endif
 
             <div class="mb-3">
-                <label for="comment" class="form-label block font-semibold">Comentario</label>
-                <textarea class="form-control block w-1/2 editor" style="@error('comment') border-color:RED; @enderror"
-                    name="comment">
-                        {{ old('comment', $comment->comment) }}
-                </textarea>
+                <label for="name" class="form-label block font-semibold">Nombre</label>
+                <input type="text" class="form-control block w-1/2" style="@error('name') border-color:RED; @enderror"
+                    value="{{ old('name', $user->name) }}" name="name">
             </div>
 
             <div class="mb-3">
-                <label for="score" class="form-label block font-semibold">Puntuación</label>
-                <select name="score" class="form-control" style="@error('score') border-color:RED; @enderror">
-                    <option value="1" {{ old('score', $comment->score) == 1 ? 'selected' : '' }}>1</option>
-                    <option value="2" {{ old('score', $comment->score) == 2 ? 'selected' : '' }}>2</option>
-                    <option value="3" {{ old('score', $comment->score) == 3 ? 'selected' : '' }}>3</option>
-                    <option value="4" {{ old('score', $comment->score) == 4 ? 'selected' : '' }}>4</option>
-                    <option value="5" {{ old('score', $comment->score) == 5 ? 'selected' : '' }}>5</option>
-                </select>
+                <label for="lastName" class="form-label block font-semibold">Apellido</label>
+                <input type="text" class=" form-control block w-1/2"
+                    style="@error('lastName') border-color:RED; @enderror"
+                    value="{{ old('lastName', $user->lastName) }}" name="lastName">
             </div>
 
             <div class="mb-3">
-                <label for="status" class="form-label block font-semibold">Estado</label>
-                <select name="status" class="form-control" style="@error('status') border-color:RED; @enderror">
-                    <option value="y" {{ old('status', $comment->status) == 'y' ? 'selected' : '' }}>Sí</option>
-                    <option value="n" {{ old('status', $comment->status) == 'n' ? 'selected' : '' }}>No</option>
-                </select>
+                <label for="email" class="form-label block font-semibold">Email</label>
+                <input type="email" class="form-control block w-1/2" style="@error('email') border-color:RED; @enderror"
+                    value="{{ old('email', $user->email) }}" name="email">
             </div>
 
             <div class="mb-3">
-                <label for="space_id" class="form-label block font-semibold">Espacio asociado</label>
-                <input type="text" class="text-gray-500 bg-gray-300 form-control block w-1/2"
-                    style="@error('space_id') border-color:RED; @enderror"
-                    value="{{ old('space_id', $comment->space->name) }}" name="space_id" disabled>
+                <label for="phone" class="form-label block font-semibold">Teléfono</label>
+                <input type="text" class=" form-control block w-1/2" style="@error('phone') border-color:RED; @enderror"
+                    value="{{ old('phone', $user->phone) }}" name="phone">
             </div>
 
-            <div class="mb-3">
-                <label for="user_id" class="form-label block font-semibold">Usuario</label>
-                <input type="text" class="text-gray-500 bg-gray-300 form-control block w-1/2"
-                    style="@error('user_id') border-color:RED; @enderror"
-                    value="{{ old('user_id', $comment->user->name . ' ' . $comment->user->lastName) }}" name="user_id"
-                    disabled>
-            </div>
 
             <input type="submit"
                 class="my-6 ml-48 text-white border border-blue-800 bg-blue-600 hover:bg-blue-800 hover:text-white font-semibold p-3 rounded-xl cursor-pointer"

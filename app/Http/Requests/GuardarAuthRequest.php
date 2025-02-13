@@ -17,9 +17,9 @@ class GuardarAuthRequest extends FormRequest
         return [
             'name' => 'required|string|max:100',
             'lastName' => 'required|string|max:100',
-            'email' => 'required|string|max:100|unique:users',
+            'email' => 'required|string|max:100|unique:users,email,' . $this->route('user')->id,
             'phone' => 'required|string|max:100',
-            'password' => 'required|string|min:8|max:100',
+            'password' => 'nullable|string|min:8|max:100',
         ];
     }
 

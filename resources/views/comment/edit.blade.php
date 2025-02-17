@@ -2,6 +2,13 @@
 
     <!-- En caso contrario, mostramos el formulario, es llamada inicial -->
     <div class="container mt-5 w-4/5 mx-auto">
+        @if (session('status'))
+            <div class="p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300"
+                role="alert">
+                <span class="font-medium">{{ session('status') }}</span>
+            </div>
+        @endif
+
         <form action="{{ route('comments.update', ['comment' => $comment->id]) }}" method="post">
             @csrf
             @method('PUT') <!-- Cambio de method a 'PUT', en caso contrario llamaría al show -->

@@ -16,9 +16,15 @@
 
             <ul class="mb-4">
                 @foreach ($comment->images as $image)
-                    <li class="mb-2">{{ $image->url }}</li>
+                    <div class="w-28 h-28 mr-2 inline-block rounded-2xl shadow-lg shadow-black">
+                        <img class="w-28 h-28 rounded-2xl" src="{{ $image->url }}"
+                            onerror="this.onerror=null;this.src='{{ asset('images/baluard.jpg') }}';" alt="Sin foto">
+                    </div>
+
                 @endforeach
             </ul>
+
+
         @endif
 
 

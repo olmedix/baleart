@@ -73,7 +73,7 @@ class ViewSpaceController extends Controller
             $space->modalities()->attach($request->input('modalities'));
         }
 
-        return redirect()->route('spaces.index')->with('success', 'Espacio creado correctamente');
+        return redirect()->route('spaces.index')->with('status', 'Espacio creado correctamente');
     }
 
     public function show(Space $space)
@@ -110,7 +110,7 @@ class ViewSpaceController extends Controller
 
         $space->update();
 
-        return back(); // Vuelve a la página origen, y vuelve a cargar el registro actualizado
+        return back()->with('status', 'Espacio actualizado correctamente');
     }
 
 

@@ -14,7 +14,9 @@ class ViewUserController extends Controller
     {
         $orderBy = $request->query('orderBy', 'created_at'); // Por defecto, 'created_at'
 
-        $users = User::query()->orderBy($orderBy, 'desc')->paginate(10);
+        $users = User::whereHas('role', function ($query) {
+            $query->where('name', 'visitant');
+        })->orderBy($orderBy, 'desc')->paginate(10);
 
         return view('user.index', ['users' => $users, 'orderBy' => $orderBy]);
     }
@@ -41,7 +43,7 @@ class ViewUserController extends Controller
             'phone' => $validate['phone']
         ]);
 
-        return back();
+        return back()->with('status', 'Usuario actualizado correctamente');
     }
 
 
@@ -59,6 +61,7 @@ class ViewUserController extends Controller
         }
 
         $user->delete();
-        return back();
+        return back()->with('status', 'Usuario eliminado correctamente');
+        ;
     }
 }

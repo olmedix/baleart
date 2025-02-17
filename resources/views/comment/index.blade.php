@@ -3,7 +3,12 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-
+                @if (session('status'))
+                    <div class="p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300"
+                        role="alert">
+                        <span class="font-medium">{{ session('status') }}</span>
+                    </div>
+                @endif
 
                 <div class="flex pt-10 pl-6 pb-8 text-gray-900 border-b-2 w-5/6 mx-auto">
                     <div class="flex w-full">

@@ -49,7 +49,7 @@ class ViewCommentController extends Controller
             'status' => $validated['status']
         ]);
 
-        return back();
+        return back()->with('status', 'Comentario actualizado correctamente');
     }
 
     public function destroy(Comment $comment)
